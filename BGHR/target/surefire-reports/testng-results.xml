@@ -1,0 +1,14 @@
+<testng-results>
+  <reporter-output>
+  </reporter-output>
+  <suite name="Command line suite" duration-ms="22" started-at="2011-06-30T11:06:25Z" finished-at="2011-06-30T11:06:25Z">
+    <groups>
+    </groups>
+    <test name="Command line test" duration-ms="22" started-at="2011-06-30T11:06:25Z" finished-at="2011-06-30T11:06:25Z">
+      <class name="com.mycompany.app.AppTest">
+        <test-method status="PASS" signature="test1()" name="test1" duration-ms="3" started-at="2011-06-30T11:06:25Z" finished-at="2011-06-30T11:06:25Z">
+        </test-method>
+      </class>
+    </test>
+  </suite>
+</testng-results>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" version="2.5">
+    <servlet>
+        <servlet-name>Application1</servlet-name>
+        <servlet-class>Application.frontServ</servlet-class>
+        <load-on-startup>1</load-on-startup>    
+  </servlet>
+ <servlet>
+        <servlet-name>Application2</servlet-name>
+        <servlet-class>Application.secondServ</servlet-class>
+        <load-on-startup>2</load-on-startup>     
+</servlet>   
+ <servlet-mapping>
+        <servlet-name>Application1</servlet-name>
+        <url-pattern>/Application1</url-pattern>
+    </servlet-mapping>
+ 
+<servlet-mapping>
+        <servlet-name>Application2</servlet-name>
+        <url-pattern>/Application2</url-pattern>
+    </servlet-mapping>
+   <welcome-file-list>
+        
+        <welcome-file>frontpage.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>
