@@ -1,0 +1,92 @@
+package Gapp;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import java.util.Map;
+import java.util.HashMap;
+
+import com.vaadin.Application;
+import com.vaadin.terminal.gwt.server.HttpServletRequestListener;
+import com.vaadin.terminal.ExternalResource;
+import com.vaadin.ui.*;
+import com.vaadin.ui.Window;
+import com.vaadin.ui.Link;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
+
+import com.google.appengine.api.users.User;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
+
+public class loginpage extends Application implements HttpServletRequestListener{
+
+    
+	Window main = new Window("Hello window"); 
+
+    @Override
+    public void init(){
+	//init method is called
+        setMainWindow(main);
+	main.addComponent(new Label("hello"));
+	Button button = new Button ("Make a request");
+        main.addComponent(button);
+    }
+
+    @Override
+    public void onRequestStart(HttpServletRequest req, HttpServletResponse response){
+	//on request start
+	final HttpServletRequest request = req;
+	final UserService uService = UserServiceFactory.getUserService();
+	final User user = uService.getCurrentUser();
+	if(user == null){
+	    final Window loginWindow = new Window("login");
+
+	    VerticalLayout layout = (VerticalLayout)loginWindow.getContent();
+
+	    layout.setMargin(true);
+	    layout.setSpacing(true);
+	    layout.addComponent(new Label("please log in to proceed"));
+	    //for each poen id create a button to fetch the link;
+	    /* for(String name : openIds.keySet()){
+		//layout.addComponent(new Link(name,new ExternalResource(uService.createLoginURL(openIds.get(name)))));
+		layout.addComponent(new Button(name,new Button.ClickListener(){
+			public void buttonClick(ClickEvent event){
+			    loginWindow.open(new ExternalResource(uService.createLoginURL(request.getRequestURI(),null,openIds.get(name),null)));
+			    // (loginWindow.getParent()).removaWindow(loginWindow);
+			}
+		    }));
+		    }*/
+	    layout.addComponent(new Button("google",new Button.ClickListener(){
+		    public void buttonClick(ClickEvent event){
+			loginWindow.open(new ExternalResource(uService.createLoginURL(request.getRequestURI(),null,"google.com/accounts/o8/id",null)));
+		    }
+		}));
+	    layout.addComponent(new Button("yahoo",new Button.ClickListener(){
+		    public void buttonClick(ClickEvent event){
+			loginWindow.open(new ExternalResource(uService.createLoginURL(request.getRequestURI(),null,"yahoo.com",null)));
+		    }
+		}));
+try{
+main.removeWindow(loginWindow);
+}catch(Exception e){}
+	    main.addWindow(loginWindow);
+	    
+	}else{
+	    main.addComponent(new Label("hello " + user.getNickname()));
+	    main.addComponent(new Button("logout", new Button.ClickListener(){
+		    public void buttonClick(ClickEvent event){
+			Window logoutWindow = new Window("logout");
+			logoutWindow.open(new ExternalResource(uService.createLogoutURL(request.getRequestURI())));
+		    }
+		}));
+	}
+    }
+
+    @Override
+    public void onRequestEnd(HttpServletRequest request, HttpServletResponse response){
+	//on request end
+    }
+}

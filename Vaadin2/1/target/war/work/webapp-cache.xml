@@ -4,16 +4,18 @@
       <string>currentBuild</string>
       <path-set>
         <pathsSet class="linked-hash-set">
-          <string>WEB-INF/web.xml</string>
           <string>WEB-INF/appengine-web.xml</string>
+          <string>WEB-INF/web.xml</string>
           <string>index.jsp</string>
+          <string>WEB-INF/classes/ant-macros.xml</string>
+          <string>WEB-INF/classes/logging.properties</string>
+          <string>WEB-INF/classes/Gapp/loginpage.class</string>
+          <string>WEB-INF/classes/Gapp/loginpage$1.class</string>
+          <string>WEB-INF/classes/Gapp/loginpage$3.class</string>
+          <string>WEB-INF/classes/Gapp/loginpage$2.class</string>
           <string>WEB-INF/classes/META-INF/persistence.xml</string>
           <string>WEB-INF/classes/META-INF/jdoconfig.xml</string>
-          <string>WEB-INF/classes/logging.properties</string>
           <string>WEB-INF/classes/log4j.properties</string>
-          <string>WEB-INF/classes/ant-macros.xml</string>
-          <string>WEB-INF/classes/Gapp/SimpleAddressBook.class</string>
-          <string>WEB-INF/classes/Gapp/SimpleAddressBook$1.class</string>
           <string>WEB-INF/lib/appengine-api-1.0-sdk-1.5.0.1.jar</string>
           <string>WEB-INF/lib/datanucleus-appengine-1.0.6.jar</string>
           <string>WEB-INF/lib/datanucleus-core-1.1.5.jar</string>
