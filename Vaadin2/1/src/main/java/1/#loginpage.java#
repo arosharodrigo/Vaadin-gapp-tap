@@ -101,7 +101,7 @@ public class loginpage extends Application implements HttpServletRequestListener
 		main.addWindow(loginWindow);
 	    }
 	    
-	}else{/*
+	}else{
 	    if(logoutButton == null){
 		main.addComponent(new Label("hello " + user.getNickname()));
 		logoutButton = new Button("logout", new Button.ClickListener(){
@@ -117,7 +117,7 @@ public class loginpage extends Application implements HttpServletRequestListener
 			}
 		    });
 		main.addComponent(logoutButton);
-		}*/
+		}
 	}
     }
     @Override

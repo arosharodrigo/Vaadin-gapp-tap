@@ -11,7 +11,6 @@
           <string>WEB-INF/classes/logging.properties</string>
           <string>WEB-INF/classes/Gapp/loginpage.class</string>
           <string>WEB-INF/classes/Gapp/loginpage$1.class</string>
-          <string>WEB-INF/classes/Gapp/loginpage$3.class</string>
           <string>WEB-INF/classes/Gapp/loginpage$2.class</string>
           <string>WEB-INF/classes/META-INF/persistence.xml</string>
           <string>WEB-INF/classes/META-INF/jdoconfig.xml</string>

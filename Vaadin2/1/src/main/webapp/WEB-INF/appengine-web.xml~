@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
-    <application>1</application>
-    <version>3</version>
+    <application>ticzauth</application>
+    <version>3.1</version>
     <sessions-enabled>true</sessions-enabled>
     <system-properties>
         <property name="java.util.logging.config.file" value="WEB-INF/classes/logging.properties"/>
