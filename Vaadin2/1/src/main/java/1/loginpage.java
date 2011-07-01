@@ -18,21 +18,24 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Link;
 
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
-public class loginpage extends Application implements HttpServletRequestListener, Serializable {
+public class loginpage extends Application implements HttpServletRequestListener{
 
     
     Window main = new Window("Hello window"); 
     Window loginWindow;
     Window logoutWindow;
     Button googleButton, yahooButton, logoutButton;
-    HttpServletRequest request;
+    Link googleLink, yahooLink, logoutLink;
+    //    HttpServletRequest request;
     UserService uService;
     User user;
+    String rederectionUrl = "";
 
     @Override
     public void init(){
@@ -41,48 +44,23 @@ public class loginpage extends Application implements HttpServletRequestListener
 	main.addComponent(new Label("hello"));
 	Button button = new Button ("Make a request");
         main.addComponent(button);
-    }
-    
-    @Override
-	public void onRequestStart(HttpServletRequest req, HttpServletResponse response){ 
-	//on request start
-	request = req;
-	uService = UserServiceFactory.getUserService();
-        user = uService.getCurrentUser();
 
 	if(user == null){
-	    /*if(loginWindow != null){
-		main.removeWindow(loginWindow);
-	    }*/
+	    /*
 	    if(loginWindow == null){
 		loginWindow = new Window("login");
 	    }
-
 	    VerticalLayout layout = (VerticalLayout)loginWindow.getContent();
 
 	    layout.setMargin(true);
-	    layout.setSpacing(true);
-	    
-	    //for each poen id create a button to fetch the link;
-	    // for(String name : openIds.keySet()){
-		//layout.addComponent(new Link(name,new ExternalResource(uService.createLoginURL(openIds.get(name)))));
-		//layout.addComponent(new Button(name,new Button.ClickListener(){
-		//	public void buttonClick(ClickEvent event){
-		//	    loginWindow.open(new ExternalResource(uService.createLoginURL(request.getRequestURI(),null,openIds.get(name),null)));
-		//	    // (loginWindow.getParent()).removaWindow(loginWindow);
-		//	}
-		    //}));
-		    //}
+	    //layout.setPadding(true);
+
 	    if(googleButton == null){
 		layout.addComponent(new Label("please log in to proceed"));
 		googleButton = new Button("google",new Button.ClickListener(){
 			public void buttonClick(ClickEvent event){
-			    String requesturl = request.getRequestURI();
-			    main.addComponent(new Label(requesturl));
-			    String LoginUrl = uService.createLoginURL(requesturl,null,"gmail.com",null);
-			    main.addComponent(new Label(LoginUrl));
+			    String LoginUrl = uService.createLoginURL(rederectionUrl,null,"gmail.com",null);
 			    loginWindow.open(new ExternalResource(LoginUrl));
-			    //(loginWindow.getParent()).removeWindow(loginWindow);
 			}
 		    });
 		layout.addComponent(googleButton);
@@ -91,7 +69,7 @@ public class loginpage extends Application implements HttpServletRequestListener
 	    if(yahooButton == null){
 		yahooButton = new Button("yahoo",new Button.ClickListener(){
 			public void buttonClick(ClickEvent event){
-			    loginWindow.open(new ExternalResource(uService.createLoginURL(request.getRequestURI(),null,"yahoo.com",null)));
+			    loginWindow.open(new ExternalResource(uService.createLoginURL(rederectionUrl,null,"yahoo.com",null)));
 			}
 		    });
 		layout.addComponent(yahooButton);
@@ -100,25 +78,42 @@ public class loginpage extends Application implements HttpServletRequestListener
 	    if(loginWindow.getParent() == null){
 		main.addWindow(loginWindow);
 	    }
-	    
-	}else{/*
+	    */
+	    if(googleLink == null){
+		googlelink = new Link("google login", new ExternalResource(uService.createLoginURL(rederectionUrl,null,"gmail.com",null)));
+		main.addComponent(googleLink);
+		yahooLink = new Link("yahoo login", new ExternalResource(uService.createLoginURL(rederectionUrl,null,"yahoo.com",null)));
+		main.addComponent(yahooLink);
+	    }
+	}else{
+	    /*
 	    if(logoutButton == null){
 		main.addComponent(new Label("hello " + user.getNickname()));
 		logoutButton = new Button("logout", new Button.ClickListener(){
 			public void buttonClick(ClickEvent event){
-			    //if(logoutWindow==null){
-				//logoutWindow = new Window("logout");
-				//logoutWindow.open(new ExternalResource(uService.createLogoutURL(request.getRequestURI())));
-				//main.addWindow(logoutWindow);
-				//}
-			    ExternalResource er = new ExternalResource(uService.createLogoutURL("index.jsp"));
+			    ExternalResource er = new ExternalResource(uService.createLogoutURL(rederectionUrl));
 			    main.open(er);
 			    main.removeComponent(logoutButton);
 			}
 		    });
 		main.addComponent(logoutButton);
 		}*/
+	    if(logoutLink == null){
+		logoutLink = new Link("yahoo login", new ExternalResource(uService.createLogoutURL(rederectionUrl)));
+		main.addComponent(yahooLink);
 	}
+
+    }
+    
+    @Override
+	public void onRequestStart(HttpServletRequest req, HttpServletResponse response){
+	main.addComponent(new Label("start of the method"));
+	//	System.out.println("start of method");
+	rederectionUrl = req.getRequestURI();
+	uService = UserServiceFactory.getUserService();
+        user = uService.getCurrentUser();
+	//	System.out.println("end of the method");
+	main.addComponent(new Label("end of the method"));
     }
     @Override
     public void onRequestEnd(HttpServletRequest request, HttpServletResponse response){
