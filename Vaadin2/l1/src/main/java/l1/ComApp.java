@@ -68,7 +68,7 @@ public class ComApp extends Application implements TabSheet.SelectedTabChangeLis
         
       
         tabLa.addListener(this);
-        tabLa.addTab(newGrp,"Create Groups",null);
+        tabLa.addTab(newGrp,"Create Groups",select1);
         tabLa.addTab(newUsr,"Create User",null);
         tabLa.addTab(newRl,"Create Roles",null);
         tabLa.addTab(ab1,"Overall Editor",null);
@@ -104,6 +104,7 @@ overallWin.showNotification("ok2");
                         la1.setValue("<b>" + la1.getValue() + "</b>");
                         la1.setContentMode(Label.CONTENT_XHTML);
                         bt1.setEnabled(true);
+                        processGrpPaintReq();
                         // la1.setIcon(select1);
 
 
@@ -112,7 +113,9 @@ overallWin.showNotification("ok2");
                     } else {
 
                         String a = (String) la1.getValue();
+                       if(a.startsWith("<b>", 0)){
                         a = a.substring(3, (a.length() - 4));
+                        }
                         la1.setValue(a);
                         la1.setContentMode(Label.CONTENT_TEXT);
                         // la1.setIcon(null);
@@ -173,8 +176,10 @@ overallWin.showNotification("ok2");
 
                     } else {
 
-                        String a = (String) la1.getValue();
+                         String a = (String) la1.getValue();
+                        if(a.startsWith("<b>", 0)){
                         a = a.substring(3, (a.length() - 4));
+                        }
                         la1.setValue(a);
                         la1.setContentMode(Label.CONTENT_TEXT);
                         bt1.setEnabled(false);
@@ -238,8 +243,10 @@ overallWin.showNotification("ok2");
 
                     } else {
 
-                        String a = (String) la1.getValue();
+                          String a = (String) la1.getValue();
+                         if(a.startsWith("<b>", 0)){
                         a = a.substring(3, (a.length() - 4));
+                        }
                         la1.setValue(a);
                         la1.setContentMode(Label.CONTENT_TEXT);
                         bt1.setEnabled(false);
@@ -269,7 +276,12 @@ overallWin.showNotification("ok2");
     }
 
     public void processGrpPaintReq() {
-
+String temp= (String)tempgrpHoldL.getValue(); 
+tempgrpHoldL.setContentMode(Label.CONTENT_TEXT);   
+ if(temp.startsWith("<b>", 0)){
+       temp = temp.substring(3, (temp.length() - 4));
+       tempgrpHoldL.setValue(temp);
+    }
       List<Label> usrListfGrp=dataH.getGrpUsr((String)tempgrpHoldL.getValue());
       List<Label>  rlListfGrp=dataH.getGrpRl((String)tempgrpHoldL.getValue());
 
@@ -291,6 +303,7 @@ overallWin.showNotification("ok2");
     CreateForm grpForm=new CreateForm(grpDtl, 2,overallWin,this,dataH);
 
     }
+
     public void editUsr(Label l, CheckBox cb,Button b){
        
      String temp=(String)l.getValue();
@@ -523,7 +536,12 @@ overallWin.showNotification("ok2");
     }
 
       }
-
+        String temp2=(String)tempgrpHoldL.getValue();
+      tempgrpHoldL.setContentMode(Label.CONTENT_TEXT);
+      if(temp2.startsWith("<b>", 0)){
+       temp2 = temp2.substring(3, (temp2.length() - 4));
+       tempgrpHoldL.setValue(temp2);
+    }
 
 
         dataH.removeRlfrmGrp(temprlHoldL,(String)tempgrpHoldL.getValue());
@@ -564,7 +582,12 @@ overallWin.showNotification("ok2");
 
       }
 
-
+    String temp2=(String)tempgrpHoldL.getValue();
+      tempgrpHoldL.setContentMode(Label.CONTENT_TEXT);
+      if(temp2.startsWith("<b>", 0)){
+       temp2 = temp2.substring(3, (temp2.length() - 4));
+       tempgrpHoldL.setValue(temp2);
+    }
 
         dataH.AddRltGrp(temprlHoldL,(String)tempgrpHoldL.getValue());
 
@@ -585,7 +608,12 @@ overallWin.showNotification("ok2");
     }
 
       }
-
+   String temp2=(String)tempgrpHoldL.getValue();
+      tempgrpHoldL.setContentMode(Label.CONTENT_TEXT);
+      if(temp2.startsWith("<b>", 0)){
+       temp2 = temp2.substring(3, (temp2.length() - 4));
+       tempgrpHoldL.setValue(temp2);
+    }
 
 
         dataH.removeUsrfrmGrp(tempusrHoldL,(String)tempgrpHoldL.getValue());
@@ -606,6 +634,12 @@ overallWin.showNotification("ok2");
     }
 
       }
+   String temp2=(String)tempgrpHoldL.getValue();
+      tempgrpHoldL.setContentMode(Label.CONTENT_TEXT);
+      if(temp2.startsWith("<b>", 0)){
+       temp2 = temp2.substring(3, (temp2.length() - 4));
+       tempgrpHoldL.setValue(temp2);
+    }
           overallWin.showNotification("okGrp1222"+(String)tempgrpHoldL.getValue());
 
 

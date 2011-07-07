@@ -69,7 +69,7 @@ public class CreateForm extends VerticalLayout {
         usrName = new TextField("Name", ((detail.get("Name") == null) ? " " : detail.get("Name")));
         usrAdd = new TextField("Address", ((detail.get("Address") == (null)) ? "" : detail.get("Address")));
         usrMail = new TextField("Email", ((detail.get("Email") == (null)) ? "" : detail.get("Email")));
-        usrDetail = new RichTextArea();
+        usrDetail = new TextField("Detail");
         vl1 = (VerticalLayout) form1.getContent();
         vl1.addComponent(usrName);
         vl1.addComponent(usrAdd);
@@ -116,7 +116,7 @@ public class CreateForm extends VerticalLayout {
         form1.setModal(true);
         HorizontalLayout hl1 = new HorizontalLayout();
         grpName = new TextField("Name", ((detail.get("Name") == null) ? " " : detail.get("Name")));
-        grpDetail = new RichTextArea();
+        grpDetail = new TextField("Detail", ((detail.get("Detail") == null) ? " " : detail.get("Detail")));
         vl1 = (VerticalLayout) form1.getContent();
         vl1.addComponent(grpName);
         vl1.addComponent(grpDetail);
@@ -158,7 +158,7 @@ public class CreateForm extends VerticalLayout {
         form1.setModal(true);
         HorizontalLayout hl1 = new HorizontalLayout();
         rlName = new TextField("Name", ((detail.get("Name") == null) ? " " : detail.get("Name")));
-        rlDetail = new RichTextArea();
+        rlDetail = new TextField("Detail", ((detail.get("Detail") == null) ? " " : detail.get("Detail")));
         vl1 = (VerticalLayout) form1.getContent();
         vl1.addComponent(rlName);
         vl1.addComponent(rlDetail);
@@ -175,7 +175,7 @@ public class CreateForm extends VerticalLayout {
                 h.put("Name", (String) rlName.getValue());
                 h.put("Detail", (String) rlDetail.getValue());
                 main.showNotification((String) rlName.getValue());
-                dataH.setGrpDetail(h, (String) rlName.getValue(), prev, 1);
+                dataH.setRlDetail(h, (String) rlName.getValue(), prev, 1);
                 main.showNotification((dataH.getGrpList()).contains(new Label((String) rlName.getValue())) + "");
                 comapp.rlListBuild();
 

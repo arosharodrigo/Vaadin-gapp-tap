@@ -100,9 +100,9 @@ public class NewRole extends AbsoluteLayout {
         listSel.setMultiSelect(true);
         listSel.setImmediate(true);
 
-        listSel.addItem("a1");
-        listSel.addItem("a2");
-        listSel.addItem("a3");
+        //listSel.addItem("a1");
+        //listSel.addItem("a2");
+        //listSel.addItem("a3");
         ab1.addComponent(v1, "top:50px; left:80px");
         ab1.addComponent(listSel, "top:50px;right:100px");
       

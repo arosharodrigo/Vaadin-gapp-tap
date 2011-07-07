@@ -38,10 +38,10 @@ public class NewUser extends AbsoluteLayout implements Property.ValueChangeListe
       this.dhub=dhub1;
       listSel=new ListSelect("Available Groups");
       listSel.addListener(this);
-      name=new TextField("Name");
-      add=new TextField("Address");
-      email=new TextField("Email");
-      detail=new RichTextArea();
+      name=new TextField("User Name");
+      add=new TextField("User Address");
+      email=new TextField("User Email");
+      detail=new TextFiels("User Detail");
       detail.setWidth("350px");
       reset=new Button("Reset");
       reset.addListener(new Button.ClickListener() {
@@ -88,9 +88,9 @@ public class NewUser extends AbsoluteLayout implements Property.ValueChangeListe
       listSel.setNullSelectionAllowed(true);
       listSel.setMultiSelect(true);
       listSel.setImmediate(true);
-      listSel.addItem("a1");
-      listSel.addItem("a2");
-      listSel.addItem("a3");
+     // listSel.addItem("a1");
+     // listSel.addItem("a2");
+     // listSel.addItem("a3");
       ab1.addComponent(v1,"top:50px; left:80px");
       ab1.addComponent(listSel,"top:50px;right:100px");
 

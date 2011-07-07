@@ -24,7 +24,7 @@ public class NewGroup extends AbsoluteLayout {
     Window w;
     ComApp capp;
     DataHub dhub;
-    TextField name; RichTextArea detail;
+    TextField name,detail;
     Button reset, create;
     VerticalLayout v1;
     NewGroup ab1;
@@ -72,8 +72,8 @@ public class NewGroup extends AbsoluteLayout {
 
             }
         });
-        name = new TextField("Name");
-        detail = new RichTextArea();
+        name = new TextField("Group Name");
+        detail = new TextField("Group Detail");
         detail.setWidth("350px");
         reset = new Button("Reset");
         reset.addListener(new Button.ClickListener() {
@@ -87,14 +87,13 @@ public class NewGroup extends AbsoluteLayout {
         create.addListener(new Button.ClickListener() {
 
             public void buttonClick(Button.ClickEvent event) {
-                Label lb=new Label();
-                lb.setContentMode(Label.CONTENT_XHTML);
-                lb.setValue((String) detail.getValue()); 
+                
+                
                 grpD.put("Name", (String) name.getValue());
-                lb.setContentMode(Label.CONTENT_TEXT); 
-                grpD.put("Detail", (String) name.getValue());//////////////
+                
+                grpD.put("Detail", (String) detail.getValue());//////////////
                 (dhub).newGrp(grpD, (String) name.getValue(),grpUsrs ,grpRls);
-                w.showNotification((String)lb.getValue());
+                w.showNotification((String)detail.getValue());
             }
         });
         v1 = new VerticalLayout();

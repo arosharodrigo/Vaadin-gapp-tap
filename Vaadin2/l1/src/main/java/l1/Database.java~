@@ -28,13 +28,14 @@ public class Database {
    //1. Creating and Editing of Group
     public void createGroup(String groupName, HashMap<String,String> hm,  List<String> usersList, List<String> rolesList){
 	
-	String groupDescription=hm.get("Detail");
+	//String groupDescription=hm.get("Detail");
+String groupDescription="Detail";
 
 	String[] users=new String [usersList.size()];
 	Iterator i1 = usersList.iterator();
 	int p=0;
 	while(i1.hasNext()) {
-        Object o1 = i1.next();
+        Object 	o1 = i1.next();
 	users[p]=(String)o1;
 	p++;
 	}
@@ -435,7 +436,7 @@ public class Database {
 	Key roleNameKey = KeyFactory.createKey("RolesCloned",roleName);
 	datastore.delete(roleNameKey);
 	
-	Query q1=new Query("Roles");
+	Query q1=new Query("Groups");
 	List<Entity> results= datastore.prepare(q1).asList(FetchOptions.Builder.withDefaults());
 	Iterator itr =results.iterator();
 	while(itr.hasNext()){

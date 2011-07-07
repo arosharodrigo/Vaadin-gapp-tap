@@ -38,10 +38,10 @@ public class NewUser extends AbsoluteLayout implements Property.ValueChangeListe
       this.dhub=dhub1;
       listSel=new ListSelect("Available Groups");
       listSel.addListener(this);
-      name=new TextField("Name");
-      add=new TextField("Address");
-      email=new TextField("Email");
-      detail=new RichTextArea();
+      name=new TextField("User Name");
+      add=new TextField("User Address");
+      email=new TextField("User Email");
+      detail=new TextField("User Detail");
       detail.setWidth("350px");
       reset=new Button("Reset");
       reset.addListener(new Button.ClickListener() {

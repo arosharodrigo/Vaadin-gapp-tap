@@ -45,29 +45,7 @@ public class DataHub {
         this.updateAllUsrs();
         this.updateAllRls();
 
-        ////////////////////////////////////For testing purpose only........
-
-     /*   String[] usrs3 = {"user1", "user2", "user3", "user4", "user5"};
-        String[] grps3 = {"grp1", "grp2", "grp3", "grp4", "grp5", "grp6", "grp7", "grp8", "grp9", "grp10", "grp11", "grp12", "grp13"};
-        String[] rls3 = {"role1", "role2", "role3", "role4", "role5"};
-        //////////////////////////////////
-        for (int i = 0; i < 5; i++) {
-            createTempUsrData(usrs3[i]);
-
-        }
-        for (int i = 0; i < 13; i++) {
-            createTempGrpData(grps3[i]);
-
-        }
-        for (int i = 0; i < 5; i++) {
-            createTempRlData(rls3[i]);
-
-        }
-        //////////////////////////////
-        w.showNotification((String)allGrps.get(1).getValue());
-        this.comapp1 = app;
-
-         */
+     
     }
 
     public List<Label> getGrpUsr(String grpname1) {
@@ -91,6 +69,7 @@ public class DataHub {
     }
 
     public void storeGrpUsrsNRlsNDetails(String grpName) {//store a given grps users and rls in a list.
+        
         List mainGrpL = db.getGroupDetails(grpName);
         HashMap<String, String> h1 = new HashMap<String, String>();
         List g1 = (List) mainGrpL.get(0);
@@ -224,9 +203,10 @@ public class DataHub {
        List<String> temp1=grpUsrs.get(grpname2);
        int x=0;
        
-         // w.showNotification("okGrp2"+grpname2+" "+temp1);
+         
        boolean f1=false;
-       if(temp1!=null){ 
+       try{ 
+    
        for(Label lb1:li){       
           for(x=0;x<temp1.size();x++){
               
@@ -243,21 +223,26 @@ public class DataHub {
         }
         grpUsrs.remove(grpname2);
         grpUsrs.put(grpname2, temp1);
-       w.showNotification("okGrp1");
-        } else {
+      
+        } catch(Exception e) {
            temp1=new ArrayList<String>();
           for(Label lb1:li){
              temp1.add((String)lb1.getValue());
             }
            grpUsrs.put(grpname2, temp1);
-          }
+        }
 
     
-        w.showNotification("okGrp3");
-        
-        
+     
+        List<String> temp2=grpRls.get(grpname2); 
+        try{
+
         db.createGroup(grpname2,grpD.get(grpname2),grpUsrs.get(grpname2),grpRls.get(grpname2));
-        updateAllGrps();
+        }catch(Exception e){
+        
+           db.createGroup(grpname2,grpD.get(grpname2),grpUsrs.get(grpname2),grpUsrs.get(grpname2));
+          }
+         updateAllGrps();
         updateAllUsrs();
 
 
@@ -395,16 +380,24 @@ w.showNotification("comapp...");
     public void AddRltGrp(List<Label> li,String grpname2){
        List<String> temp1=grpRls.get(grpname2);
         int x=0;        
-        for(x=0;x<temp1.size();x++){
-           for(Label lb1:li){
-               if(!(temp1.get(x).equals((String)lb1.getValue()))){
-                   temp1.add(temp1.get(x));
+      w.showNotification(temp1.size()+"");
+     boolean f1=false;
+      for(Label lb1:li){       
+          for(x=0;x<temp1.size();x++){
+              
+              if((temp1.get(x).equals((String)lb1.getValue()))){
+                   f1=true;
                   break;
                }
 
            }
+          if(!f1){
+            temp1.add((String)lb1.getValue());
+            f1=false;
+          }
         }
-
+           
+       
         grpRls.remove(grpname2);
         grpRls.put(grpname2, temp1);
         db.createGroup(grpname2,grpD.get(grpname2),grpUsrs.get(grpname2),grpRls.get(grpname2));
@@ -419,9 +412,9 @@ w.showNotification("comapp...");
 
     public void updateAllGrps() {
         List ll = this.getGrpList();
-        grpD.clear();
-        grpUsrs.clear();
-        grpRls.clear();
+       grpD.clear();
+       grpUsrs.clear();
+       grpRls.clear();
 
         for (Object la : ll) {
             Label lb = (Label) la;

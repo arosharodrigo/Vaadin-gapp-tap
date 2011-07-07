@@ -58,8 +58,8 @@ public class NewRole extends AbsoluteLayout {
             }
         });
        
-        name = new TextField("Name");
-        detail = new RichTextArea();
+        name = new TextField("Role Name");
+        detail = new TextField("Role Detail");
         detail.setWidth("350px");
         reset = new Button("Reset");
         reset.addListener(new Button.ClickListener() {

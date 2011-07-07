@@ -30,11 +30,12 @@ public class Database {
 	
 	String groupDescription=hm.get("Detail");
 
+
 	String[] users=new String [usersList.size()];
 	Iterator i1 = usersList.iterator();
 	int p=0;
 	while(i1.hasNext()) {
-        Object o1 = i1.next();
+        Object 	o1 = i1.next();
 	users[p]=(String)o1;
 	p++;
 	}
