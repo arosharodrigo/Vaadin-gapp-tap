@@ -50,9 +50,9 @@ public class NewGroup extends AbsoluteLayout {
                 Set hs1 = (Set) grps.getValue();
                 Iterator it1 = (Iterator) hs1.iterator();
                 while (it1.hasNext()) {
-                    w.showNotification("h111");
+                   
                     grpRls.add((String) it1.next());
-                    // w.showNotification((String)grpRls.get(1));
+                    
                 }
 
             }
@@ -65,9 +65,9 @@ public class NewGroup extends AbsoluteLayout {
                 Set hs1 = (Set) grps.getValue();
                 Iterator it1 = (Iterator) hs1.iterator();
                 while (it1.hasNext()) {
-                    w.showNotification("h111");
+                    
                     grpUsrs.add((String) it1.next());
-                    // w.showNotification((String)grpRls.get(1));
+                    
                 }
 
             }
@@ -93,7 +93,7 @@ public class NewGroup extends AbsoluteLayout {
                 
                 grpD.put("Detail", (String) detail.getValue());//////////////
                 (dhub).newGrp(grpD, (String) name.getValue(),grpUsrs ,grpRls);
-                w.showNotification((String)detail.getValue());
+               
             }
         });
         v1 = new VerticalLayout();

@@ -77,14 +77,15 @@ public class ComApp extends Application implements TabSheet.SelectedTabChangeLis
     }
 
     public void grpListBuild() {
-     overallWin.showNotification("grpList");        
+            
 	grp=dataH.getGrpList();
-overallWin.showNotification("ok2");
+
         grpV.removeAllComponents();
         for (final Label la1 : grp) {
             final HorizontalLayout tempH = new HorizontalLayout();
             final CheckBox chkB = new CheckBox();
             final Button bt1 = new Button("Edit");
+            final Button viewDetail=new Button("Detail");
             bt1.setEnabled(false);
             bt1.addListener(new Button.ClickListener() {
 
@@ -92,6 +93,7 @@ overallWin.showNotification("ok2");
                 comapp1.editGrp(la1,chkB,bt1);
                 }
             });
+            
 
             chkB.addListener(new Button.ClickListener() {
 
@@ -170,8 +172,7 @@ overallWin.showNotification("ok2");
                         la1.setContentMode(Label.CONTENT_XHTML);
                         bt1.setEnabled(true);
 
-                        // la1.setIcon(select1);
-                        // overallWin.showNotification(la1.getStyleName());
+                        
 
 
                     } else {
@@ -186,7 +187,7 @@ overallWin.showNotification("ok2");
                         //  la1.setIcon(null);
                         tempusrHold.remove(la1);
                         tempusrHoldL.remove(la1);
-                        // overallWin.showNotification(la1.getStyleName());
+                        
                        
 
                     }
@@ -299,7 +300,7 @@ tempgrpHoldL.setContentMode(Label.CONTENT_TEXT);
        l.setValue(temp);
     }
     HashMap grpDtl=dataH.getGrpDetail(temp);
-    //overallWin.showNotification((String)usrDtl.get("Name"));
+   
     CreateForm grpForm=new CreateForm(grpDtl, 2,overallWin,this,dataH);
 
     }
@@ -313,7 +314,7 @@ tempgrpHoldL.setContentMode(Label.CONTENT_TEXT);
        l.setValue(temp);
     }
     HashMap usrDtl=dataH.getUsrDetail(temp);
-    //overallWin.showNotification((String)usrDtl.get("Name"));
+    
     CreateForm usrForm=new CreateForm(usrDtl, 1,overallWin,this,dataH);
      
    
@@ -332,7 +333,7 @@ tempgrpHoldL.setContentMode(Label.CONTENT_TEXT);
        l.setValue(temp);
     }
     HashMap rlDtl=dataH.getRlDetail(temp);
-    //overallWin.showNotification((String)usrDtl.get("Name"));
+    
     CreateForm rlForm=new CreateForm(rlDtl, 3,overallWin,this,dataH);
 
     }
@@ -340,7 +341,7 @@ tempgrpHoldL.setContentMode(Label.CONTENT_TEXT);
 
 
     public void repaintUsr(List<Label> usrL) {
-        //CheckBox tempCB=new CheckBox();
+       
         String x;
 
         for (Label la1 : usrL) {
@@ -360,7 +361,7 @@ tempgrpHoldL.setContentMode(Label.CONTENT_TEXT);
     }
 
     public void repaintRl(List<Label> RlL) {
-        //CheckBox tempCB=new CheckBox();
+        
         String x;
 
         for (Label la1 : RlL) {
@@ -498,13 +499,13 @@ tempgrpHoldL.setContentMode(Label.CONTENT_TEXT);
    
     private void grpDel() {
       String temp=(String)tempgrpHoldL.getValue();
-      overallWin.showNotification(temp);
+      
        tempgrpHoldL.setContentMode(Label.CONTENT_TEXT);
       if(temp.startsWith("<b>", 0)){
        temp = temp.substring(3, (temp.length() - 4));
        tempgrpHoldL.setValue(temp);
     }
-       overallWin.showNotification(temp);  
+       
       dataH.deleteGrpDB(temp);
     }
 
@@ -640,7 +641,7 @@ tempgrpHoldL.setContentMode(Label.CONTENT_TEXT);
        temp2 = temp2.substring(3, (temp2.length() - 4));
        tempgrpHoldL.setValue(temp2);
     }
-          overallWin.showNotification("okGrp1222"+(String)tempgrpHoldL.getValue());
+          
 
 
         dataH.AddUsrtGrp(tempusrHoldL,(String)tempgrpHoldL.getValue());
@@ -655,23 +656,23 @@ tempgrpHoldL.setContentMode(Label.CONTENT_TEXT);
 
      Tab t=tempTab.getTab(tempTab.getSelectedTab());
     String cap=t.getCaption();
-       // overallWin.showNotification("psaw");
+       
     if(cap.equals("Create Groups")){
 
          newGrp.setRlList(dataH.getRlList());
          newGrp.setUsrList(dataH.getUsrList());
-        overallWin.showNotification("grp");
+        
      }else if(cap.equals("Create User")){
            newUsr.setGrpList(dataH.getGrpList());
-            overallWin.showNotification("usr");  
+            
      }else if(cap.equals("Create Roles")){
             newRl.setGrpList(dataH.getGrpList());
-             overallWin.showNotification("rl");
+             
      } else if(cap.equals("Overall Editor")){
            comapp1.grpListBuild();
            comapp1.usrListBuild();
            comapp1.rlListBuild();
-            overallWin.showNotification("ovallEditor");
+            
      }
 
     } 

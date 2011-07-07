@@ -57,7 +57,24 @@ public class DataHub {
         }
         return returnL;
     }
+public List<Label> getUsrGrp(String grpname1) {
+        List<String> tempusr = (this.usrGrps).get(grpname1);
+        List<Label> returnL = new ArrayList<Label>();
+        for (String s : tempusr) {
+            returnL.add(new Label(s));
 
+        }
+        return returnL;
+    }
+public List<Label> getRlGrp(String grpname1) {
+        List<String> tempusr = (this.rlGrps).get(grpname1);
+        List<Label> returnL = new ArrayList<Label>();
+        for (String s : tempusr) {
+            returnL.add(new Label(s));
+
+        }
+        return returnL;
+    }
     public List<Label> getGrpRl(String grpname1) {
         List<String> tempusr = (this.grpRls).get(grpname1);
         List<Label> returnL = new ArrayList<Label>();
