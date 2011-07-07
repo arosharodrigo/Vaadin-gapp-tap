@@ -17,11 +17,11 @@ import com.vaadin.ui.*;
 import com.google.appengine.api.datastore.*;
 import java.util.*;
 import java.lang.String;
+import java.io.Serializable;
 
-
-public class Database {
+public class Database implements Serializable{
     
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    //    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
    //Creating Fields
 
@@ -53,85 +53,85 @@ public class Database {
 
 	Key groupNameKey = KeyFactory.createKey("Groups",groupName);
 	try{
-	Entity group = datastore.get(groupNameKey);
+	Entity group = DatastoreServiceFactory.getDatastoreService().get(groupNameKey);
 	group.setProperty("groupName", groupName);
 	group.setProperty("groupDescription", groupDescription);
-	datastore.put(group);
+	DatastoreServiceFactory.getDatastoreService().put(group);
 	
 	Query userQuery = new Query("Users");
 	userQuery.setAncestor(group.getKey());
-	List<Entity> results = datastore.prepare(userQuery).asList(FetchOptions.Builder.withDefaults());
+	List<Entity> results = DatastoreServiceFactory.getDatastoreService().prepare(userQuery).asList(FetchOptions.Builder.withDefaults());
 	Iterator itr = results.iterator(); 
 	while(itr.hasNext()) {
         Object element = itr.next();
 	Entity e=(Entity)element;
 	Key k =e.getKey();
 	try{
-	    datastore.delete(k); 
+	    DatastoreServiceFactory.getDatastoreService().delete(k); 
 	}catch(Exception ex){}
 	
 	}
 	for(int i=0;i<users.length;i++) {
 	    Entity ent = new Entity("Users", users[i], group.getKey());
 	    ent.setProperty("userName", users[i]);
-	    datastore.put(ent);
+	    DatastoreServiceFactory.getDatastoreService().put(ent);
 	}
 
 	Query userQuery2 = new Query("Roles");
 	userQuery2.setAncestor(group.getKey());
-	List<Entity> results2 = datastore.prepare(userQuery2).asList(FetchOptions.Builder.withDefaults());
+	List<Entity> results2 = DatastoreServiceFactory.getDatastoreService().prepare(userQuery2).asList(FetchOptions.Builder.withDefaults());
 	Iterator itr2 = results2.iterator(); 
 	while(itr2.hasNext()) {
         Object element2 = itr2.next();
 	Entity e2=(Entity)element2;
 	Key k2 =e2.getKey();
 	try{
-	    datastore.delete(k2); 
+	    DatastoreServiceFactory.getDatastoreService().delete(k2); 
 	}catch(Exception e){}
 	
 	}
 	for(int i=0;i<roles.length;i++) {
 	    Entity ent = new Entity("Roles", roles[i], group.getKey());
 	    ent.setProperty("roleName", roles[i]);
-	    datastore.put(ent);
+	    DatastoreServiceFactory.getDatastoreService().put(ent);
 	}
 	//Adding info into cloned users & roles as well
 	Query q3=new Query("UsersCloned");
-	List<Entity> results3 = datastore.prepare(q3).asList(FetchOptions.Builder.withDefaults());
+	List<Entity> results3 = DatastoreServiceFactory.getDatastoreService().prepare(q3).asList(FetchOptions.Builder.withDefaults());
 	Iterator itr3 = results3.iterator(); 
 	while(itr3.hasNext()) {
         Object element3 = itr3.next();
 	Entity e3=(Entity)element3;
 	Key k3 = KeyFactory.createKey(e3.getKey(),"GroupsClonedUsers",groupName);
 	try{
-	    datastore.delete(k3); 
+	    DatastoreServiceFactory.getDatastoreService().delete(k3); 
 	}catch(Exception e){}
 
 	for(int i=0;i<users.length;i++){
 	    if((e3.getProperty("userName")).equals(users[i])){
 		Entity ent = new Entity("GroupsClonedUsers", groupName, e3.getKey());
 		ent.setProperty("groupName", groupName);
-		datastore.put(ent);
+		DatastoreServiceFactory.getDatastoreService().put(ent);
 	    }
 	}
 	}
 	
 	Query q4=new Query("RolesCloned");
-	List<Entity> results4 = datastore.prepare(q4).asList(FetchOptions.Builder.withDefaults());
+	List<Entity> results4 = DatastoreServiceFactory.getDatastoreService().prepare(q4).asList(FetchOptions.Builder.withDefaults());
 	Iterator itr4 = results4.iterator(); 
 	while(itr4.hasNext()) {
         Object element4 = itr4.next();
 	Entity e4=(Entity)element4;
 	Key k4 = KeyFactory.createKey(e4.getKey(),"GroupsClonedRoles",groupName);
 	try{
-	    datastore.delete(k4); 
+	    DatastoreServiceFactory.getDatastoreService().delete(k4); 
 	}catch(Exception e){}
 
 	for(int i=0;i<roles.length;i++){
 	    if((e4.getProperty("roleName")).equals(roles[i])){
 		Entity ent = new Entity("GroupsClonedRoles", groupName, e4.getKey());
 		ent.setProperty("groupName", groupName);
-		datastore.put(ent);
+		DatastoreServiceFactory.getDatastoreService().put(ent);
 	    }
 	}
 	}
@@ -144,21 +144,21 @@ public class Database {
 	Entity group = new Entity("Groups", groupName);
 	group.setProperty("groupName", groupName);
 	group.setProperty("groupDescription",  groupDescription);
-	datastore.put(group);
+	DatastoreServiceFactory.getDatastoreService().put(group);
 
 	for(int i=0;i<users.length;i++) {
 	    Entity ent1 = new Entity("Users", users[i], group.getKey());
 	    ent1.setProperty("userName", users[i]);
-	    datastore.put(ent1);
+	    DatastoreServiceFactory.getDatastoreService().put(ent1);
 	}
 	for(int i=0;i<roles.length;i++) {
 	    Entity ent2 = new Entity("Roles", roles[i], group.getKey());
 	    ent2.setProperty("roleName", roles[i]);
-	    datastore.put(ent2);
+	    DatastoreServiceFactory.getDatastoreService().put(ent2);
 	}
 	
 	Query q5=new Query("UsersCloned");
-	List<Entity> results5 = datastore.prepare(q5).asList(FetchOptions.Builder.withDefaults());
+	List<Entity> results5 = DatastoreServiceFactory.getDatastoreService().prepare(q5).asList(FetchOptions.Builder.withDefaults());
 	Iterator itr5 = results5.iterator(); 
 	while(itr5.hasNext()) {
         Object element5 = itr5.next();
@@ -167,13 +167,13 @@ public class Database {
 	    if((e5.getProperty("userName")).equals(users[i])){
 		Entity ent5 = new Entity("GroupsClonedUsers", groupName, e5.getKey());
 		ent5.setProperty("groupName", groupName);
-		datastore.put(ent5);
+		DatastoreServiceFactory.getDatastoreService().put(ent5);
 	    }
 	}
 	}
 
 	Query q6=new Query("RolesCloned");
-	List<Entity> results6 = datastore.prepare(q6).asList(FetchOptions.Builder.withDefaults());
+	List<Entity> results6 = DatastoreServiceFactory.getDatastoreService().prepare(q6).asList(FetchOptions.Builder.withDefaults());
 	Iterator itr6 = results6.iterator(); 
 	while(itr6.hasNext()) {
         Object element6 = itr6.next();
@@ -182,7 +182,7 @@ public class Database {
 	    if((e6.getProperty("roleName")).equals(roles[i])){
 		Entity ent6 = new Entity("GroupsClonedRoles", groupName, e6.getKey());
 		ent6.setProperty("groupName", groupName);
-		datastore.put(ent6);
+		DatastoreServiceFactory.getDatastoreService().put(ent6);
 	    }
 	}
 	}
@@ -208,47 +208,47 @@ public class Database {
 
 	Key userNameKey = KeyFactory.createKey("UsersCloned",userName);
 	try{
-	Entity user = datastore.get(userNameKey);
+	Entity user = DatastoreServiceFactory.getDatastoreService().get(userNameKey);
 	user.setProperty("userName",userName);
 	user.setProperty("userAddress",userAddress);
 	user.setProperty("userMobile",userMobile);
 	user.setProperty("userEmail",userEmail);
-	datastore.put(user);
+	DatastoreServiceFactory.getDatastoreService().put(user);
 	
 	Query groupQuery = new Query("GroupsClonedUsers");
 	groupQuery.setAncestor(user.getKey());
-	List<Entity> results = datastore.prepare(groupQuery).asList(FetchOptions.Builder.withDefaults());
+	List<Entity> results = DatastoreServiceFactory.getDatastoreService().prepare(groupQuery).asList(FetchOptions.Builder.withDefaults());
 	Iterator itr = results.iterator(); 
 	while(itr.hasNext()) {
         Object element = itr.next();
 	Entity e=(Entity)element;
 	Key k =e.getKey();
 	try{
-	    datastore.delete(k); 
+	    DatastoreServiceFactory.getDatastoreService().delete(k); 
 	}catch(Exception ex){}
 	
 	}
 	for(int i=0;i<groupsClonedUsers.length;i++) {
 	    Entity ent = new Entity("GroupsClonedUsers", groupsClonedUsers[i], user.getKey());
 	    ent.setProperty("groupName", groupsClonedUsers[i]);
-	    datastore.put(ent);
+	    DatastoreServiceFactory.getDatastoreService().put(ent);
 	}
 	Query q1=new Query("Groups");
-	List<Entity> results1 = datastore.prepare(q1).asList(FetchOptions.Builder.withDefaults());
+	List<Entity> results1 = DatastoreServiceFactory.getDatastoreService().prepare(q1).asList(FetchOptions.Builder.withDefaults());
 	Iterator itr1 = results1.iterator(); 
 	while(itr1.hasNext()) {
         Object element1 = itr1.next();
 	Entity e1=(Entity)element1;
 	Key k1 = KeyFactory.createKey(e1.getKey(),"Users",userName);
 	try{
-	    datastore.delete(k1); 
+	    DatastoreServiceFactory.getDatastoreService().delete(k1); 
 	}catch(Exception e){}
 
 	for(int i=0;i<groupsClonedUsers.length;i++){
 	    if((e1.getProperty("groupName")).equals(groupsClonedUsers[i])){
 		Entity ent = new Entity("Users", userName, e1.getKey());
 		ent.setProperty("userName", userName);
-		datastore.put(ent);
+		DatastoreServiceFactory.getDatastoreService().put(ent);
 	    }
 	}
 	}
@@ -259,15 +259,15 @@ public class Database {
 	usersCloned.setProperty("userAddress",userAddress);
 	usersCloned.setProperty("userMobile",userMobile);
 	usersCloned.setProperty("userEmail",userEmail);
-	datastore.put(usersCloned);
+	DatastoreServiceFactory.getDatastoreService().put(usersCloned);
 	
 	for(int i=0;i<groupsClonedUsers.length;i++) {
 	    Entity ent = new Entity("GroupsClonedUsers", groupsClonedUsers[i], usersCloned.getKey());
 	    ent.setProperty("groupName", groupsClonedUsers[i]);
-	    datastore.put(ent);
+	    DatastoreServiceFactory.getDatastoreService().put(ent);
      	}
 	Query q2=new Query("Groups");
-	List<Entity> results2 = datastore.prepare(q2).asList(FetchOptions.Builder.withDefaults());
+	List<Entity> results2 = DatastoreServiceFactory.getDatastoreService().prepare(q2).asList(FetchOptions.Builder.withDefaults());
 	Iterator itr2 = results2.iterator(); 
 	while(itr2.hasNext()) {
         Object element2 = itr2.next();
@@ -276,7 +276,7 @@ public class Database {
 	    if((e2.getProperty("groupName")).equals(groupsClonedUsers[i])){
 		Entity ent = new Entity("Users", userName, e2.getKey());
 		ent.setProperty("userName", userName);
-		datastore.put(ent);
+		DatastoreServiceFactory.getDatastoreService().put(ent);
 	    }
 	}
 	}
@@ -300,46 +300,46 @@ public class Database {
 
 	Key roleNameKey = KeyFactory.createKey("RolesCloned", roleName);
 	try{
-	Entity role = datastore.get(roleNameKey);
+	Entity role = DatastoreServiceFactory.getDatastoreService().get(roleNameKey);
 	role.setProperty("roleName",roleName);
 	role.setProperty("roleDescription",roleDescription);
-	datastore.put(role);
+	DatastoreServiceFactory.getDatastoreService().put(role);
 
 	Query groupQuery = new Query("GroupsClonedRoles");
 	groupQuery.setAncestor(role.getKey());
-	List<Entity> results = datastore.prepare(groupQuery).asList(FetchOptions.Builder.withDefaults());
+	List<Entity> results = DatastoreServiceFactory.getDatastoreService().prepare(groupQuery).asList(FetchOptions.Builder.withDefaults());
 	Iterator itr = results.iterator(); 
 	while(itr.hasNext()) {
         Object element = itr.next();
 	Entity e=(Entity)element;
 	Key k =e.getKey();
 	try{
-	    datastore.delete(k); 
+	    DatastoreServiceFactory.getDatastoreService().delete(k); 
 	}catch(Exception ex){}
 	
 	}
 	for(int i=0;i<groupsClonedRoles.length;i++) {
 	    Entity ent = new Entity("GroupsClonedRoles", groupsClonedRoles[i], role.getKey());
 	    ent.setProperty("groupName", groupsClonedRoles[i]);
-	    datastore.put(ent);
+	    DatastoreServiceFactory.getDatastoreService().put(ent);
 	}
 
 	Query q1=new Query("Groups");
-	List<Entity> results1 = datastore.prepare(q1).asList(FetchOptions.Builder.withDefaults());
+	List<Entity> results1 = DatastoreServiceFactory.getDatastoreService().prepare(q1).asList(FetchOptions.Builder.withDefaults());
 	Iterator itr1 = results1.iterator(); 
 	while(itr1.hasNext()) {
         Object element1 = itr1.next();
 	Entity e1=(Entity)element1;
 	Key k1 = KeyFactory.createKey(e1.getKey(),"Roles",roleName);
 	try{
-	    datastore.delete(k1); 
+	    DatastoreServiceFactory.getDatastoreService().delete(k1); 
 	}catch(Exception e){}
 
 	for(int i=0;i<groupsClonedRoles.length;i++){
 	    if((e1.getProperty("groupName")).equals(groupsClonedRoles[i])){
 		Entity ent = new Entity("Roles", roleName, e1.getKey());
 		ent.setProperty("roleName", roleName);
-		datastore.put(ent);
+		DatastoreServiceFactory.getDatastoreService().put(ent);
 	    }
 	}
 	}
@@ -350,16 +350,16 @@ public class Database {
 	Entity rolesCloned= new Entity("RolesCloned",roleName);
 	rolesCloned.setProperty("roleName",roleName);
 	rolesCloned.setProperty("roleDescription",roleDescription);
-	datastore.put(rolesCloned);
+	DatastoreServiceFactory.getDatastoreService().put(rolesCloned);
 
 	for(int i=0;i<groupsClonedRoles.length;i++){
 	    Entity ent=new Entity("GroupsClonedRoles",groupsClonedRoles[i],rolesCloned.getKey());
 	    ent.setProperty("groupName", groupsClonedRoles[i]);
-	    datastore.put(ent);
+	    DatastoreServiceFactory.getDatastoreService().put(ent);
 	}
 
 	Query q2=new Query("Groups");
-	List<Entity> results2 = datastore.prepare(q2).asList(FetchOptions.Builder.withDefaults());
+	List<Entity> results2 = DatastoreServiceFactory.getDatastoreService().prepare(q2).asList(FetchOptions.Builder.withDefaults());
 	Iterator itr2 = results2.iterator(); 
 	while(itr2.hasNext()) {
         Object element2 = itr2.next();
@@ -368,7 +368,7 @@ public class Database {
 	    if((e2.getProperty("groupName")).equals(groupsClonedRoles[i])){
 		Entity ent = new Entity("Roles", roleName, e2.getKey());
 		ent.setProperty("roleName", roleName);
-		datastore.put(ent);
+		DatastoreServiceFactory.getDatastoreService().put(ent);
 	    }
 	}
 	}
@@ -383,30 +383,30 @@ public class Database {
     // 4. Remove group
     public void removeGroup(String groupName){
 	Key groupNameKey = KeyFactory.createKey("Groups",groupName);
-	datastore.delete(groupNameKey);
+	DatastoreServiceFactory.getDatastoreService().delete(groupNameKey);
 	
 	Query q1=new Query("UsersCloned");
-	List<Entity> results = datastore.prepare(q1).asList(FetchOptions.Builder.withDefaults());
+	List<Entity> results = DatastoreServiceFactory.getDatastoreService().prepare(q1).asList(FetchOptions.Builder.withDefaults());
 	Iterator itr = results.iterator(); 
 	while(itr.hasNext()) {
         Object element = itr.next();
 	Entity e1=(Entity)element;
 	Key k1 = KeyFactory.createKey(e1.getKey(),"GroupsClonedUsers",groupName);
 	try{
-	    datastore.delete(k1); 
+	    DatastoreServiceFactory.getDatastoreService().delete(k1); 
 	}catch(Exception e){}
 	
 	}
 	
 	Query q2=new Query("RolesCloned");
-	List<Entity> results2 = datastore.prepare(q2).asList(FetchOptions.Builder.withDefaults());
+	List<Entity> results2 = DatastoreServiceFactory.getDatastoreService().prepare(q2).asList(FetchOptions.Builder.withDefaults());
 	Iterator itr2 = results2.iterator(); 
 	while(itr2.hasNext()) {
         Object element = itr2.next();
 	Entity e2=(Entity)element;
 	Key k2 = KeyFactory.createKey(e2.getKey(),"GroupsClonedRoles",groupName);
 	try{
-	    datastore.delete(k2); 
+	    DatastoreServiceFactory.getDatastoreService().delete(k2); 
 	}catch(Exception e){}
 	} 	
     }
@@ -414,17 +414,17 @@ public class Database {
     // 5. Remove user
     public void removeUser(String userName){
 	Key userNameKey = KeyFactory.createKey("UsersCloned",userName);
-	datastore.delete(userNameKey);
+	DatastoreServiceFactory.getDatastoreService().delete(userNameKey);
 
 	Query q1=new Query("Groups");
-	List<Entity> results= datastore.prepare(q1).asList(FetchOptions.Builder.withDefaults());
+	List<Entity> results= DatastoreServiceFactory.getDatastoreService().prepare(q1).asList(FetchOptions.Builder.withDefaults());
 	Iterator itr = results.iterator();
 	while(itr.hasNext()){
 	    Object element =itr.next();
 	    Entity e1=(Entity)element;
 	    Key k1 = KeyFactory.createKey(e1.getKey(),"Users",userName);
 	try{
-	    datastore.delete(k1); 
+	    DatastoreServiceFactory.getDatastoreService().delete(k1); 
 	}catch(Exception e){}
 	
 	}   
@@ -434,17 +434,17 @@ public class Database {
     public void removeRole(String roleName){
 	
 	Key roleNameKey = KeyFactory.createKey("RolesCloned",roleName);
-	datastore.delete(roleNameKey);
+	DatastoreServiceFactory.getDatastoreService().delete(roleNameKey);
 	
 	Query q1=new Query("Groups");
-	List<Entity> results= datastore.prepare(q1).asList(FetchOptions.Builder.withDefaults());
+	List<Entity> results= DatastoreServiceFactory.getDatastoreService().prepare(q1).asList(FetchOptions.Builder.withDefaults());
 	Iterator itr =results.iterator();
 	while(itr.hasNext()){
 	    Object element =itr.next();
 	    Entity e1=(Entity)element;
 	    Key k1=KeyFactory.createKey(e1.getKey(),"Roles",roleName);
 	    try{
-		datastore.delete(k1);
+		DatastoreServiceFactory.getDatastoreService().delete(k1);
 	    }catch(Exception e){}
 	}
     }
@@ -461,13 +461,13 @@ public class Database {
 
     	Key groupNameKey = KeyFactory.createKey("Groups",groupName);
 	try{
-	Entity group = datastore.get(groupNameKey);
+	Entity group = DatastoreServiceFactory.getDatastoreService().get(groupNameKey);
 	set1.add((String)group.getProperty("groupName"));
 	set1.add((String)group.getProperty("groupDescription"));
 
        	Query groupQuery = new Query("Users");
 	groupQuery.setAncestor(group.getKey());
-	List<Entity> results = datastore.prepare(groupQuery).asList(FetchOptions.Builder.withDefaults());
+	List<Entity> results = DatastoreServiceFactory.getDatastoreService().prepare(groupQuery).asList(FetchOptions.Builder.withDefaults());
 	Iterator itr = results.iterator(); 
 	while(itr.hasNext()) {
         Object element = itr.next();
@@ -477,7 +477,7 @@ public class Database {
 	
 	Query groupQuery2 = new Query("Roles");
 	groupQuery2.setAncestor(group.getKey());
-	List<Entity> results2 = datastore.prepare(groupQuery2).asList(FetchOptions.Builder.withDefaults());
+	List<Entity> results2 = DatastoreServiceFactory.getDatastoreService().prepare(groupQuery2).asList(FetchOptions.Builder.withDefaults());
 	Iterator itr2 = results2.iterator(); 
 	while(itr2.hasNext()) {
         Object element2 = itr2.next();
@@ -502,7 +502,7 @@ public class Database {
 
 	Key userNameKey = KeyFactory.createKey("UsersCloned",userName);
 	try{
-	Entity usersCloned = datastore.get(userNameKey);
+	Entity usersCloned = DatastoreServiceFactory.getDatastoreService().get(userNameKey);
 	set1.add((String)usersCloned.getProperty("userName"));
 	set1.add((String)usersCloned.getProperty("userAddress"));
 	set1.add((String)usersCloned.getProperty("userEmail"));
@@ -510,7 +510,7 @@ public class Database {
 	
 	Query groupQuery = new Query("GroupsClonedUsers");
 	groupQuery.setAncestor(usersCloned.getKey());
-	List<Entity> results = datastore.prepare(groupQuery).asList(FetchOptions.Builder.withDefaults());
+	List<Entity> results = DatastoreServiceFactory.getDatastoreService().prepare(groupQuery).asList(FetchOptions.Builder.withDefaults());
 	Iterator itr = results.iterator(); 
 	while(itr.hasNext()) {
         Object element = itr.next();
@@ -534,12 +534,12 @@ public class Database {
 	Key roleNameKey = KeyFactory.createKey("RolesCloned",roleName);
 	String[] s1=new String[3];
 	try{
-	Entity rolesCloned = datastore.get(roleNameKey);
+	Entity rolesCloned = DatastoreServiceFactory.getDatastoreService().get(roleNameKey);
 	set1.add((String)rolesCloned.getProperty("roleName"));
 	set1.add((String)rolesCloned.getProperty("roleDescription"));
 	Query groupQuery = new Query("GroupsClonedRoles");
 	groupQuery.setAncestor(rolesCloned.getKey());
-	List<Entity> results = datastore.prepare(groupQuery).asList(FetchOptions.Builder.withDefaults());
+	List<Entity> results = DatastoreServiceFactory.getDatastoreService().prepare(groupQuery).asList(FetchOptions.Builder.withDefaults());
 	Iterator itr = results.iterator(); 
 	while(itr.hasNext()) {
         Object element = itr.next();
@@ -560,7 +560,7 @@ public class Database {
 	List<String> set1=new ArrayList<String>();
 
 	Query groupQuery = new Query("Groups");
-	List<Entity> results = datastore.prepare(groupQuery).asList(FetchOptions.Builder.withDefaults());
+	List<Entity> results = DatastoreServiceFactory.getDatastoreService().prepare(groupQuery).asList(FetchOptions.Builder.withDefaults());
 	Iterator itr = results.iterator(); 
 	while(itr.hasNext()) {
         Object element = itr.next();
@@ -575,7 +575,7 @@ public class Database {
 	List<String> set1=new ArrayList<String>();
 
 	Query userQuery = new Query("UsersCloned");
-	List<Entity> results = datastore.prepare(userQuery).asList(FetchOptions.Builder.withDefaults());
+	List<Entity> results = DatastoreServiceFactory.getDatastoreService().prepare(userQuery).asList(FetchOptions.Builder.withDefaults());
 	Iterator itr = results.iterator(); 
 	while(itr.hasNext()) {
         Object element = itr.next();
@@ -590,7 +590,7 @@ public class Database {
 	List<String> set1=new ArrayList<String>();
 
 	Query roleQuery = new Query("RolesCloned");
-	List<Entity> results = datastore.prepare(roleQuery).asList(FetchOptions.Builder.withDefaults());
+	List<Entity> results = DatastoreServiceFactory.getDatastoreService().prepare(roleQuery).asList(FetchOptions.Builder.withDefaults());
 	Iterator itr = results.iterator(); 
 	while(itr.hasNext()) {
         Object element = itr.next();

@@ -17,9 +17,10 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.io.Serializable;
 
 
-public class NewUser extends AbsoluteLayout implements Property.ValueChangeListener{
+public class NewUser extends AbsoluteLayout implements Property.ValueChangeListener, Serializable{
  Window w;
  ComApp capp;
  DataHub dhub;

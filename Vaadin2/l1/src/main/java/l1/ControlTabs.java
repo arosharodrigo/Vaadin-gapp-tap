@@ -1,8 +1,8 @@
 package l1;
 import com.vaadin.ui.TabSheet;
+import java.io.Serializable;
 
-
-public class ControlTabs extends TabSheet   {
+public class ControlTabs extends TabSheet implements Serializable {
  ControlTabs tabSheet1;
 public ComApp comapp;
    

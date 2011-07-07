@@ -7,7 +7,7 @@
  <display-name>ComApp</display-name>
   <servlet>
     <servlet-name>ComApp</servlet-name>
-    <servlet-class>com.vaadin.terminal.gwt.server.ApplicationServlet</servlet-class>
+    <servlet-class>com.vaadin.terminal.gwt.server.GAEApplicationServlet</servlet-class>
     <init-param>
       <param-name>application</param-name>
       <param-value>l1.ComApp</param-value>

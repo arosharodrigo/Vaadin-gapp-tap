@@ -11,10 +11,10 @@ import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 import java.util.HashMap;
 import javax.swing.plaf.ButtonUI;
-
+import java.io.Serializable;
 
 @SuppressWarnings("serial")
-public class CreateForm extends VerticalLayout {
+public class CreateForm extends VerticalLayout implements Serializable{
 
     Window form1;
     TextField usrName, usrAdd, usrMail, usrDetail,grpName,grpDetail,rlName,rlDetail;

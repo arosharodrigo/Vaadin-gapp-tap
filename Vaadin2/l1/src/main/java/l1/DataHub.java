@@ -7,9 +7,9 @@ import com.vaadin.ui.Window;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.io.Serializable;
 
-
-public class DataHub {
+public class DataHub implements Serializable{
 
     ComApp comapp1;
     Window w;

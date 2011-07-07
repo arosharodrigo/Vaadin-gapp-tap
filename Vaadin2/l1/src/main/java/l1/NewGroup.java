@@ -17,9 +17,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.io.Serializable;
 
-
-public class NewGroup extends AbsoluteLayout {
+public class NewGroup extends AbsoluteLayout implements Serializable{
 
     Window w;
     ComApp capp;
