@@ -67,6 +67,8 @@ public class ComApp extends Application implements TabSheet.SelectedTabChangeLis
     @Override
 	public void init() {
 
+	setTheme("cusTheme");
+
         comapp1 = this;
         overallWin = new Window("Combined View");
         overallWin.setBorder(5);
@@ -91,7 +93,7 @@ public class ComApp extends Application implements TabSheet.SelectedTabChangeLis
         ////////////////////////////
 	
         tabLa.addListener(this);
-        tabLa.addTab(newGrp,"Create Groups",select1);
+        tabLa.addTab(newGrp,"Create Groups",null);
         tabLa.addTab(newUsr,"Create User",null);
         tabLa.addTab(newRl,"Create Roles",null);
         tabLa.addTab(ab1,"Overall Editor",null);
@@ -125,7 +127,7 @@ public class ComApp extends Application implements TabSheet.SelectedTabChangeLis
 			    la1.setValue("<b>" + la1.getValue() + "</b>");
 			    la1.setContentMode(Label.CONTENT_XHTML);
 			    bt1.setEnabled(true);
-			    processGrpPaintReq();
+			   // processGrpPaintReq();
 			    // la1.setIcon(select1);
 			} else {
 			    String a = (String) la1.getValue();
@@ -626,6 +628,9 @@ public class ComApp extends Application implements TabSheet.SelectedTabChangeLis
 		    overallWin.open(new ExternalResource(UserServiceFactory.getUserService().createLogoutURL("")));
 		}
 	    });
+	logoutButton.setDebugId("logoutButton");
+	overallWin.addComponent(logoutButton);
+	((VerticalLayout)overallWin.getContent()).setComponentAlignment(logoutButton,Alignment.TOP_RIGHT);
     }
 
     @Override
@@ -633,18 +638,25 @@ public class ComApp extends Application implements TabSheet.SelectedTabChangeLis
         user = UserServiceFactory.getUserService().getCurrentUser();
 	
 	if(user == null){
+	    loginWindow.setVisible(true);
+	    logoutButton.setVisible(false);
+	    /*
 	    if(logoutButton.getParent() != null){
 		overallWin.removeComponent(logoutButton);
 	    }
 	    if(loginWindow.getParent() == null){
 		overallWin.addWindow(loginWindow);
-	    }
+		}*/
 	}else{
+	    loginWindow.setVisible(false);
+	    logoutButton.setVisible(true);
+	    /*
 	    if(loginWindow.getParent() != null){
 		overallWin.removeWindow(loginWindow);
 	    }
 	    overallWin.addComponent(logoutButton);
 	    ((VerticalLayout)overallWin.getContent()).setComponentAlignment(logoutButton,Alignment.TOP_RIGHT);
+	    */
 	}
     }
 

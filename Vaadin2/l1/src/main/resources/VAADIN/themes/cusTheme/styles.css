@@ -1,0 +1,22 @@
+@import "../reindeer/styles.css";
+
+body{
+font-weight:bold;
+}
+
+textarea{
+border-radius:10px;
+}
+
+.v-listselect{
+border-radius:10px;
+background-color:#fff;
+}
+
+.v-textfield{
+border-radius:10px;
+}
+
+.v-tabsheet-content{
+background-color:#eee;
+}

@@ -44,7 +44,7 @@ public class NewUser extends AbsoluteLayout implements Property.ValueChangeListe
       email=new TextField("User Email");
       detail=new TextField("User Land and Mobile Phone No...");
       detail.setWidth("350px");
-      detail.setRows(7);
+      detail.setRows(1);
       reset=new Button("Reset");
       reset.addListener(new Button.ClickListener() {
 
@@ -76,7 +76,7 @@ public class NewUser extends AbsoluteLayout implements Property.ValueChangeListe
       v1.setSpacing(true);
       hl=new HorizontalLayout();
       ab1=this;
-      ab1.setWidth("1000px");
+      ab1.setWidth("99.9%");
       ab1.setHeight("700px");
       v1.addComponent(name);
       v1.addComponent(add);
@@ -86,8 +86,8 @@ public class NewUser extends AbsoluteLayout implements Property.ValueChangeListe
       hl.addComponent(create);
       hl.addComponent(reset);
       v1.addComponent(hl);
-      listSel.setWidth("250px");
-      listSel.setHeight("450");
+      listSel.setWidth("300px");
+      listSel.setHeight("90%");
       listSel.setRows(7);
       listSel.setNullSelectionAllowed(true);
       listSel.setMultiSelect(true);

@@ -104,7 +104,7 @@ public class NewGroup extends AbsoluteLayout implements Serializable{
         v1.setSpacing(true);
         hl = new HorizontalLayout();
         ab1 = this;
-        ab1.setWidth("1000px");
+        ab1.setWidth("99%");
         ab1.setHeight("700px");
         v1.addComponent(name);
         v1.addComponent(detail);
@@ -112,20 +112,20 @@ public class NewGroup extends AbsoluteLayout implements Serializable{
         hl.addComponent(create);
         hl.addComponent(reset);
         v1.addComponent(hl);
-        listSel.setWidth("200px");
+        listSel.setWidth("300px");
         listSel.setHeight("250px");
         listSel.setRows(7);
         listSel.setNullSelectionAllowed(true);
         listSel.setMultiSelect(true);
         listSel.setImmediate(true);
-        listSel2.setWidth("200px");
+        listSel2.setWidth("300px");
         listSel2.setHeight("250px");
         listSel2.setRows(7);
         listSel2.setNullSelectionAllowed(true);
         listSel2.setMultiSelect(true);
         listSel2.setImmediate(true);
        
-        ab1.addComponent(v1, "top:50px; left:80px");
+        ab1.addComponent(v1, "top:50px; left:100px");
         ab1.addComponent(listSel, "top:50px;right:100px");
          ab1.addComponent(listSel2, "bottom:70px;right:100px");
 
