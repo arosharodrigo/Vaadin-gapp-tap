@@ -1,5 +1,5 @@
 package l1;
-
+import com.vaadin.data.validator.*;
 import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.event.MouseEvents.ClickEvent;
@@ -77,6 +77,8 @@ public class NewGroup extends AbsoluteLayout implements Serializable{
         detail.setWidth("350px");
         detail.setRows(7);
         reset = new Button("Reset");
+	name.setRequired(true); 
+
         reset.addListener(new Button.ClickListener() {
 
             public void buttonClick(Button.ClickEvent event) {
@@ -88,7 +90,7 @@ public class NewGroup extends AbsoluteLayout implements Serializable{
         create.addListener(new Button.ClickListener() {
 
             public void buttonClick(Button.ClickEvent event) {
-                
+                if(name.isValid()){
                 try{
                 grpD.put("Name", (String) name.getValue());
                 
@@ -96,6 +98,7 @@ public class NewGroup extends AbsoluteLayout implements Serializable{
                 (dhub).newGrp(grpD, (String) name.getValue(),grpUsrs ,grpRls);
 		}catch(Exception e){
 		} 
+		}
             }
         });
         v1 = new VerticalLayout();

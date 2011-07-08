@@ -7,62 +7,62 @@
           <string>WEB-INF/web.xml</string>
           <string>WEB-INF/appengine-web.xml</string>
           <string>vaadin/themes/img/tickG.jpg</string>
+          <string>vaadin/themes/img/select.gif</string>
           <string>vaadin/themes/img/Thumbs.db</string>
           <string>vaadin/themes/img/logo.png</string>
-          <string>vaadin/themes/img/select.gif</string>
           <string>index.jsp</string>
+          <string>WEB-INF/classes/META-INF/persistence.xml</string>
+          <string>WEB-INF/classes/META-INF/jdoconfig.xml</string>
+          <string>WEB-INF/classes/logging.properties</string>
           <string>WEB-INF/classes/log4j.properties</string>
-          <string>WEB-INF/classes/ant-macros.xml</string>
           <string>WEB-INF/classes/vaadin/themes/img/tickG.jpg</string>
+          <string>WEB-INF/classes/vaadin/themes/img/select.gif</string>
           <string>WEB-INF/classes/vaadin/themes/img/Thumbs.db</string>
           <string>WEB-INF/classes/vaadin/themes/img/logo.png</string>
-          <string>WEB-INF/classes/vaadin/themes/img/select.gif</string>
-          <string>WEB-INF/classes/l1/NewGroup$1.class</string>
-          <string>WEB-INF/classes/l1/NewRole$3.class</string>
-          <string>WEB-INF/classes/l1/ComApp$6.class</string>
-          <string>WEB-INF/classes/l1/ComApp$9.class</string>
-          <string>WEB-INF/classes/l1/CreateForm$5.class</string>
-          <string>WEB-INF/classes/l1/NewGroup$3.class</string>
-          <string>WEB-INF/classes/l1/ComApp$12.class</string>
-          <string>WEB-INF/classes/l1/NewRole$1.class</string>
-          <string>WEB-INF/classes/l1/ComApp$3.class</string>
-          <string>WEB-INF/classes/l1/ComApp$4.class</string>
-          <string>WEB-INF/classes/l1/CreateForm$2.class</string>
-          <string>WEB-INF/classes/l1/ComApp$15.class</string>
-          <string>WEB-INF/classes/l1/CreateForm$4.class</string>
-          <string>WEB-INF/classes/l1/NewRole.class</string>
-          <string>WEB-INF/classes/l1/Database.class</string>
-          <string>WEB-INF/classes/l1/ComApp$13.class</string>
-          <string>WEB-INF/classes/l1/NewGroup.class</string>
-          <string>WEB-INF/classes/l1/DataHub.class</string>
-          <string>WEB-INF/classes/l1/ControlTabs.class</string>
-          <string>WEB-INF/classes/l1/ComApp$16.class</string>
-          <string>WEB-INF/classes/l1/CreateForm$6.class</string>
-          <string>WEB-INF/classes/l1/ComApp$10.class</string>
-          <string>WEB-INF/classes/l1/NewGroup$4.class</string>
-          <string>WEB-INF/classes/l1/ComApp$14.class</string>
-          <string>WEB-INF/classes/l1/ComApp$5.class</string>
-          <string>WEB-INF/classes/l1/NewUser.class</string>
-          <string>WEB-INF/classes/l1/NewUser$1.class</string>
-          <string>WEB-INF/classes/l1/ComApp$7.class</string>
-          <string>WEB-INF/classes/l1/NewGroup$2.class</string>
-          <string>WEB-INF/classes/l1/ComApp$8.class</string>
-          <string>WEB-INF/classes/l1/ComApp$1.class</string>
-          <string>WEB-INF/classes/l1/ComApp$2.class</string>
-          <string>WEB-INF/classes/l1/NewRole$2.class</string>
-          <string>WEB-INF/classes/l1/ComApp$11.class</string>
-          <string>WEB-INF/classes/l1/NewUser$2.class</string>
-          <string>WEB-INF/classes/l1/ComApp.class</string>
-          <string>WEB-INF/classes/l1/CreateForm$3.class</string>
-          <string>WEB-INF/classes/l1/CreateForm.class</string>
-          <string>WEB-INF/classes/l1/CreateForm$1.class</string>
-          <string>WEB-INF/classes/logging.properties</string>
           <string>WEB-INF/classes/img/tickG.jpg</string>
+          <string>WEB-INF/classes/img/select.gif</string>
           <string>WEB-INF/classes/img/Thumbs.db</string>
           <string>WEB-INF/classes/img/logo.png</string>
-          <string>WEB-INF/classes/img/select.gif</string>
-          <string>WEB-INF/classes/META-INF/jdoconfig.xml</string>
-          <string>WEB-INF/classes/META-INF/persistence.xml</string>
+          <string>WEB-INF/classes/ant-macros.xml</string>
+          <string>WEB-INF/classes/l1/ComApp$1.class</string>
+          <string>WEB-INF/classes/l1/ComApp$12.class</string>
+          <string>WEB-INF/classes/l1/ComApp$16.class</string>
+          <string>WEB-INF/classes/l1/ControlTabs.class</string>
+          <string>WEB-INF/classes/l1/NewUser$1.class</string>
+          <string>WEB-INF/classes/l1/CreateForm$6.class</string>
+          <string>WEB-INF/classes/l1/ComApp$5.class</string>
+          <string>WEB-INF/classes/l1/CreateForm$2.class</string>
+          <string>WEB-INF/classes/l1/CreateForm$1.class</string>
+          <string>WEB-INF/classes/l1/CreateForm$3.class</string>
+          <string>WEB-INF/classes/l1/NewRole.class</string>
+          <string>WEB-INF/classes/l1/CreateForm$4.class</string>
+          <string>WEB-INF/classes/l1/ComApp.class</string>
+          <string>WEB-INF/classes/l1/NewUser$2.class</string>
+          <string>WEB-INF/classes/l1/NewGroup$1.class</string>
+          <string>WEB-INF/classes/l1/ComApp$7.class</string>
+          <string>WEB-INF/classes/l1/NewUser.class</string>
+          <string>WEB-INF/classes/l1/ComApp$11.class</string>
+          <string>WEB-INF/classes/l1/CreateForm$5.class</string>
+          <string>WEB-INF/classes/l1/NewRole$2.class</string>
+          <string>WEB-INF/classes/l1/NewRole$3.class</string>
+          <string>WEB-INF/classes/l1/ComApp$8.class</string>
+          <string>WEB-INF/classes/l1/ComApp$15.class</string>
+          <string>WEB-INF/classes/l1/ComApp$13.class</string>
+          <string>WEB-INF/classes/l1/ComApp$14.class</string>
+          <string>WEB-INF/classes/l1/NewRole$1.class</string>
+          <string>WEB-INF/classes/l1/NewGroup$4.class</string>
+          <string>WEB-INF/classes/l1/Database.class</string>
+          <string>WEB-INF/classes/l1/ComApp$6.class</string>
+          <string>WEB-INF/classes/l1/ComApp$2.class</string>
+          <string>WEB-INF/classes/l1/ComApp$9.class</string>
+          <string>WEB-INF/classes/l1/ComApp$10.class</string>
+          <string>WEB-INF/classes/l1/NewGroup$2.class</string>
+          <string>WEB-INF/classes/l1/CreateForm.class</string>
+          <string>WEB-INF/classes/l1/NewGroup.class</string>
+          <string>WEB-INF/classes/l1/ComApp$4.class</string>
+          <string>WEB-INF/classes/l1/ComApp$3.class</string>
+          <string>WEB-INF/classes/l1/DataHub.class</string>
+          <string>WEB-INF/classes/l1/NewGroup$3.class</string>
           <string>WEB-INF/lib/appengine-api-1.0-sdk-1.5.0.1.jar</string>
           <string>WEB-INF/lib/datanucleus-appengine-1.0.6.jar</string>
           <string>WEB-INF/lib/datanucleus-core-1.1.5.jar</string>
