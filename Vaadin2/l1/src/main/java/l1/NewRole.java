@@ -1,5 +1,5 @@
 package l1;
-
+import com.vaadin.data.validator.*;
 import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.ui.AbsoluteLayout;
@@ -59,6 +59,8 @@ public class NewRole extends AbsoluteLayout implements Serializable{
        
         name = new TextField("Role Name");
         detail = new TextField("Role Detail");
+	name.setRequired(true); 
+
         detail.setWidth("350px");
         detail.setRows(7);
         reset = new Button("Reset");
@@ -73,11 +75,15 @@ public class NewRole extends AbsoluteLayout implements Serializable{
         create.addListener(new Button.ClickListener() {
 
             public void buttonClick(Button.ClickEvent event) {
+		if(name.isValid()){
 		try{
                 rlD.put("Name", (String) name.getValue());
                 rlD.put("Detail", (String) detail.getValue());
                 (dhub).newRl(rlD, (String) name.getValue(),rlGrps);
+		name.setValue("");
+                detail.setValue("");
 		}catch(Exception e){
+		}
 		}
             }
         });

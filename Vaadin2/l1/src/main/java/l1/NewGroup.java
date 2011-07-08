@@ -104,7 +104,7 @@ public class NewGroup extends AbsoluteLayout implements Serializable{
         v1.setSpacing(true);
         hl = new HorizontalLayout();
         ab1 = this;
-        ab1.setWidth("99%");
+        ab1.setWidth("99.9%");
         ab1.setHeight("700px");
         v1.addComponent(name);
         v1.addComponent(detail);

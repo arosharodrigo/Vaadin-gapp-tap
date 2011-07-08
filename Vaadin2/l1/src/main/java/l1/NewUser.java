@@ -1,4 +1,6 @@
 package l1;
+
+import com.vaadin.data.validator.*;
 import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.ui.AbsoluteLayout;
@@ -42,7 +44,7 @@ public class NewUser extends AbsoluteLayout implements Property.ValueChangeListe
       name=new TextField("User Name");
       add=new TextField("User Address");
       email=new TextField("User Email");
-      detail=new TextField("User Land and Mobile Phone No...");
+      detail=new TextField("User Mobile No.");
       detail.setWidth("350px");
       detail.setRows(1);
       reset=new Button("Reset");
@@ -59,13 +61,19 @@ public class NewUser extends AbsoluteLayout implements Property.ValueChangeListe
       create.addListener(new Button.ClickListener() {
 
             public void buttonClick(ClickEvent event) {
+		if(email.isValid() && detail.isValid() && name.isValid() && add.isValid()){
 		try{
 	    usrD.put("Name",(String)name.getValue());
             usrD.put("Address",(String)add.getValue());
             usrD.put("Email",(String)email.getValue());
             usrD.put("Detail",(String)detail.getValue());
             (dhub).newUsr(usrD,(String)name.getValue(), usrGrps);
+	    name.setValue("");
+            add.setValue("");
+            email.setValue("");
+            detail.setValue("");
 		} catch(Exception e){
+		}
 		}
             }
 
@@ -78,6 +86,15 @@ public class NewUser extends AbsoluteLayout implements Property.ValueChangeListe
       ab1=this;
       ab1.setWidth("99.9%");
       ab1.setHeight("700px");
+
+      email.addValidator(new EmailValidator("Email address is invalid"));
+      detail.addValidator(new RegexpValidator("[+]{1}[0-9]{11}","Not a number"));
+      detail.addValidator(new StringLengthValidator("Use country code",12,12,true));
+      name.setRequired(true); 
+      add.setRequired(true);
+      email.setRequired(true);
+      detail.setRequired(true);
+
       v1.addComponent(name);
       v1.addComponent(add);
       v1.addComponent(email);

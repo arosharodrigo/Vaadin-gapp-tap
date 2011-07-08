@@ -1,5 +1,6 @@
 package l1;
 
+import com.vaadin.data.validator.*;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
@@ -85,11 +86,17 @@ public class CreateForm extends VerticalLayout implements Serializable{
         usrName = new TextField("Name",prev);
         usrAdd = new TextField("Address", ((detail.get("Address") == (null)) ? "" : detail.get("Address")));
         usrMail = new TextField("Email", ((detail.get("Email") == (null)) ? "" : detail.get("Email")));
-        usrDetail = new TextField("Detail",((detail.get("Detail") == (null)) ? "" : detail.get("Detail")));
+        usrDetail = new TextField("Mobile",((detail.get("Detail") == (null)) ? "" : detail.get("Detail")));
         usrDetail.setRows(7);
         ab1=new AbsoluteLayout();
         vl1 = (VerticalLayout) form1.getContent();
 	vl1.addComponent(ab1);
+
+	usrName.setRequired(true);
+	usrAdd.setRequired(true);
+	usrMail.setRequired(true);
+	usrDetail.setRequired(true);
+
         ab1.addComponent(usrName,"top:10%;left:5%");
         ab1.addComponent(usrAdd,"top:20%;left:5%");
         ab1.addComponent(usrMail,"top:30%;left:5%");
@@ -111,7 +118,9 @@ public class CreateForm extends VerticalLayout implements Serializable{
         }//////////////////////e
         change.addListener(new Button.ClickListener() {
 
-            public void buttonClick(ClickEvent event) {
+		public void buttonClick(ClickEvent event) {
+		    if(usrName.isValid() && usrAdd.isValid() && usrMail.isValid() && usrDetail.isValid()){ 
+
                 HashMap<String, String> h = new HashMap<String, String>();
                 h.put("Name", (String) usrName.getValue());
                 h.put("Address", (String) usrAdd.getValue());
@@ -125,7 +134,8 @@ public class CreateForm extends VerticalLayout implements Serializable{
 		}
                 comapp.usrListBuild();
                 main.removeWindow(form1);
-            }
+		    }
+		}
         });
         reset.addListener(new Button.ClickListener() {
 
@@ -168,6 +178,9 @@ public class CreateForm extends VerticalLayout implements Serializable{
         ab1=new AbsoluteLayout();
         vl1 = (VerticalLayout) form1.getContent();
 	vl1.addComponent(ab1);
+
+	grpName.setRequired(true);
+
         ab1.addComponent(grpName,"top:10%;left:5%");
         ab1.addComponent(grpDetail,"top:40%;left:5%");
         hl1.addComponent(reset);
@@ -194,6 +207,8 @@ public class CreateForm extends VerticalLayout implements Serializable{
         change.addListener(new Button.ClickListener() {
 
             public void buttonClick(ClickEvent event) {
+		if(grpName.isValid()){
+
                 HashMap<String, String> h = new HashMap<String, String>();
                 h.put("Name", (String) grpName.getValue());
                 h.put("Detail", (String) grpDetail.getValue());
@@ -205,7 +220,8 @@ public class CreateForm extends VerticalLayout implements Serializable{
                 comapp.grpListBuild();
 
                 main.removeWindow(form1);
-            }
+		}
+	    }
         });
         reset.addListener(new Button.ClickListener() {
 
@@ -237,6 +253,9 @@ public class CreateForm extends VerticalLayout implements Serializable{
         rlName = new TextField("Name", ((detail.get("Name") == null) ? " " : detail.get("Name")));
         rlDetail = new TextField("Detail", ((detail.get("Detail") == null) ? " " : detail.get("Detail")));
         rlDetail.setRows(7);
+
+	rlName.setRequired(true);
+
         ab1=new AbsoluteLayout();
         vl1 = (VerticalLayout) form1.getContent();
 	vl1.addComponent(ab1);
@@ -260,6 +279,7 @@ public class CreateForm extends VerticalLayout implements Serializable{
         change.addListener(new Button.ClickListener() {
 
             public void buttonClick(ClickEvent event) {
+		if(rlName.isValid()){ 
                 HashMap<String, String> h = new HashMap<String, String>();
                 h.put("Name", (String) rlName.getValue());
                 h.put("Detail", (String) rlDetail.getValue());
@@ -271,7 +291,8 @@ public class CreateForm extends VerticalLayout implements Serializable{
                 comapp.rlListBuild();
 
                 main.removeWindow(form1);
-            }
+		}
+	    }
         });
         reset.addListener(new Button.ClickListener() {
 
