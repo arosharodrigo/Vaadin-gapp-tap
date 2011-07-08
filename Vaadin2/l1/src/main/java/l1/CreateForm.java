@@ -11,6 +11,8 @@ import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 import java.util.HashMap;
 import javax.swing.plaf.ButtonUI;
+import com.vaadin.ui.ListSelect;
+import java.util.List;
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
@@ -23,7 +25,7 @@ public class CreateForm extends VerticalLayout implements Serializable{
     ComApp comapp;
     DataHub dataH;
     Window main;
-
+    
     public CreateForm(HashMap<String, String> detail, int catgry, Window main1, ComApp app, DataHub d) {
         this.comapp = app;
         this.dataH = d;
@@ -60,7 +62,18 @@ public class CreateForm extends VerticalLayout implements Serializable{
     }
 
     private void createUsrForm(HashMap<String, String> detail, final String prev) {
-
+///////////////////////  b  
+     String temp=prev;   
+       if(temp.startsWith("<b>", 0)){
+       temp = temp.substring(3, (temp.length() - 4));
+       
+        }
+	ListSelect listSelUsr = new ListSelect("User Groups");
+        listSelUsr.setWidth("250px");
+        listSelUsr.setHeight("300px");
+        listSelUsr.setRows(5);
+        listSelUsr.setNullSelectionAllowed(true);
+ /////////////////////////////////////////////////////////e
         form1 = new Window("User Detail");
         form1.setModal(true);
         HorizontalLayout hl1 = new HorizontalLayout();
@@ -77,10 +90,17 @@ public class CreateForm extends VerticalLayout implements Serializable{
         vl1.addComponent(usrDetail);
         hl1.addComponent(reset);
         hl1.addComponent(change);
-        hl1.setSpacing(true);
+///////////////////b
+        hl1.addComponent(listSelUsr);
+///////////////////////////// e      
+ hl1.setSpacing(true);
         hl1.setComponentAlignment(change, Alignment.MIDDLE_RIGHT);
         hl1.setComponentAlignment(reset, Alignment.MIDDLE_LEFT);
-        vl1.addComponent(hl1);
+        vl1.addComponent(hl1);///////////b
+         List<Label> grpsLa=dataH.getUsrGrp(temp);
+         for(Label l:grpsLa){
+          listSelUsr.addItem((String)l.getValue());
+        }//////////////////////e
         change.addListener(new Button.ClickListener() {
 
             public void buttonClick(ClickEvent event) {
@@ -111,9 +131,24 @@ public class CreateForm extends VerticalLayout implements Serializable{
     }
 
     private void createGrpForm(HashMap<String, String> detail, final String prev){
-
+////////////////////////b
+       String temp=prev;   
+       if(temp.startsWith("<b>", 0)){
+       temp = temp.substring(3, (temp.length() - 4));
+       
+    }/////////////////////////////////e
         form1 = new Window("Group Detail");
-        form1.setModal(true);
+        form1.setModal(true);/////////////////b
+        ListSelect listSelUsr = new ListSelect("Group Users");
+        ListSelect listSelUsr2 = new ListSelect("Group Roles");
+        listSelUsr.setWidth("120px");
+        listSelUsr.setHeight("300px");
+        listSelUsr.setRows(5);
+        listSelUsr.setNullSelectionAllowed(true);
+        listSelUsr2.setWidth("120px");
+        listSelUsr2.setHeight("300px");
+        listSelUsr2.setRows(5);
+        listSelUsr2.setNullSelectionAllowed(true);//////////////////////e
         HorizontalLayout hl1 = new HorizontalLayout();
         grpName = new TextField("Name", ((detail.get("Name") == null) ? " " : detail.get("Name")));
         grpDetail = new TextField("Detail", ((detail.get("Detail") == null) ? " " : detail.get("Detail")));
@@ -121,11 +156,21 @@ public class CreateForm extends VerticalLayout implements Serializable{
         vl1.addComponent(grpName);
         vl1.addComponent(grpDetail);
         hl1.addComponent(reset);
-        hl1.addComponent(change);
+        hl1.addComponent(change);//////////b
+        hl1.addComponent(listSelUsr);
+        hl1.addComponent(listSelUsr2);/////////////e
         hl1.setSpacing(true);
         hl1.setComponentAlignment(change, Alignment.MIDDLE_RIGHT);
         hl1.setComponentAlignment(reset, Alignment.MIDDLE_LEFT);
-        vl1.addComponent(hl1);
+        vl1.addComponent(hl1);/////////////////b
+        List<Label> usrsLa=dataH.getGrpUsr(temp);
+         for(Label l:usrsLa){
+          listSelUsr.addItem((String)l.getValue());
+        }
+         List<Label> usrsLa2=dataH.getGrpRl(temp);
+         for(Label l:usrsLa2){
+          listSelUsr2.addItem((String)l.getValue());
+        }/////////////////////////e
         change.addListener(new Button.ClickListener() {
 
             public void buttonClick(ClickEvent event) {
@@ -153,7 +198,17 @@ public class CreateForm extends VerticalLayout implements Serializable{
 
     }
  private void createRlForm(HashMap<String, String> detail, final String prev){
-
+//////////////b
+         String temp=prev;   
+       if(temp.startsWith("<b>", 0)){
+       temp = temp.substring(3, (temp.length() - 4));
+       
+        }
+	ListSelect listSelUsr = new ListSelect("Role Groups");
+        listSelUsr.setWidth("250px");
+        listSelUsr.setHeight("300px");
+        listSelUsr.setRows(5);
+        listSelUsr.setNullSelectionAllowed(true);///////////////////e
         form1 = new Window("Role Detail");
         form1.setModal(true);
         HorizontalLayout hl1 = new HorizontalLayout();
@@ -163,11 +218,16 @@ public class CreateForm extends VerticalLayout implements Serializable{
         vl1.addComponent(rlName);
         vl1.addComponent(rlDetail);
         hl1.addComponent(reset);
-        hl1.addComponent(change);
+        hl1.addComponent(change);////////////b
+        hl1.addComponent(listSelUsr);///////////////e
         hl1.setSpacing(true);
         hl1.setComponentAlignment(change, Alignment.MIDDLE_RIGHT);
         hl1.setComponentAlignment(reset, Alignment.MIDDLE_LEFT);
-        vl1.addComponent(hl1);
+        vl1.addComponent(hl1);///////////////b
+        List<Label> rlsLa=dataH.getRlGrp(temp);
+         for(Label l:rlsLa){
+          listSelUsr.addItem((String)l.getValue());
+        }/////////////////////////e
         change.addListener(new Button.ClickListener() {
 
             public void buttonClick(ClickEvent event) {

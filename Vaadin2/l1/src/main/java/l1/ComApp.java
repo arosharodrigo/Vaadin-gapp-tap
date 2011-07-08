@@ -500,7 +500,6 @@ public class ComApp extends Application implements TabSheet.SelectedTabChangeLis
 		l.setValue(temp);
 	    }
 	}
-	
 	for(Label l:temprlHoldL){
 	    dataH.deleteRlDB((String)l.getValue());
         }
