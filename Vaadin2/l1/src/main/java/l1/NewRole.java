@@ -80,6 +80,8 @@ public class NewRole extends AbsoluteLayout implements Serializable{
                 rlD.put("Name", (String) name.getValue());
                 rlD.put("Detail", (String) detail.getValue());
                 (dhub).newRl(rlD, (String) name.getValue(),rlGrps);
+		name.setValue("");
+                detail.setValue("");
 		}catch(Exception e){
 		}
 		}

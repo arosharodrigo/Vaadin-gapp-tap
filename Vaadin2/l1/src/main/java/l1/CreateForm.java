@@ -86,7 +86,7 @@ public class CreateForm extends VerticalLayout implements Serializable{
         usrName = new TextField("Name",prev);
         usrAdd = new TextField("Address", ((detail.get("Address") == (null)) ? "" : detail.get("Address")));
         usrMail = new TextField("Email", ((detail.get("Email") == (null)) ? "" : detail.get("Email")));
-        usrDetail = new TextField("Detail",((detail.get("Detail") == (null)) ? "" : detail.get("Detail")));
+        usrDetail = new TextField("Mobile",((detail.get("Detail") == (null)) ? "" : detail.get("Detail")));
         usrDetail.setRows(7);
         ab1=new AbsoluteLayout();
         vl1 = (VerticalLayout) form1.getContent();

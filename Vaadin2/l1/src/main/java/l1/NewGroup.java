@@ -96,6 +96,8 @@ public class NewGroup extends AbsoluteLayout implements Serializable{
                 
                 grpD.put("Detail", (String) detail.getValue());//////////////
                 (dhub).newGrp(grpD, (String) name.getValue(),grpUsrs ,grpRls);
+		name.setValue("");
+		detail.setValue("");
 		}catch(Exception e){
 		} 
 		}

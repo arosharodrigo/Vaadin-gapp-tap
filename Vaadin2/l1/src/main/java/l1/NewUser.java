@@ -44,7 +44,7 @@ public class NewUser extends AbsoluteLayout implements Property.ValueChangeListe
       name=new TextField("User Name");
       add=new TextField("User Address");
       email=new TextField("User Email");
-      detail=new TextField("User Land and Mobile Phone No...");
+      detail=new TextField("User Mobile No.");
       detail.setWidth("350px");
       detail.setRows(7);
       reset=new Button("Reset");
@@ -68,6 +68,10 @@ public class NewUser extends AbsoluteLayout implements Property.ValueChangeListe
             usrD.put("Email",(String)email.getValue());
             usrD.put("Detail",(String)detail.getValue());
             (dhub).newUsr(usrD,(String)name.getValue(), usrGrps);
+	    name.setValue("");
+            add.setValue("");
+            email.setValue("");
+            detail.setValue("");
 		} catch(Exception e){
 		}
 		}
