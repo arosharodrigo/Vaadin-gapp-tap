@@ -93,7 +93,7 @@ public class NewRole extends AbsoluteLayout implements Serializable{
         v1.setSpacing(true);
         hl = new HorizontalLayout();
         ab1 = this;
-        ab1.setWidth("1000px");
+        ab1.setWidth("99.9%");
         ab1.setHeight("700px");
         v1.addComponent(name);
         v1.addComponent(detail);
@@ -101,8 +101,8 @@ public class NewRole extends AbsoluteLayout implements Serializable{
         hl.addComponent(create);
         hl.addComponent(reset);
         v1.addComponent(hl);
-        listSel.setWidth("250px");
-        listSel.setHeight("300px");
+        listSel.setWidth("300px");
+        listSel.setHeight("90%");
         listSel.setRows(7);
         listSel.setNullSelectionAllowed(true);
         listSel.setMultiSelect(true);
