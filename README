@@ -1,0 +1,7 @@
+This Project is for the purpose of creating an user managnent system which consists seperate tabs for the creation of users and groups and their roles and another tab for the purpose of observing the whole relationship topology, there is another tab called overall editor. 
+
+The group and users have many to many relationship as well as the groups and the roles. Groups can be considered as the middle man.
+
+
+
+project group----------Arosha Rodrigo,Prabath Weerasinghe,Tiran wijesekara
