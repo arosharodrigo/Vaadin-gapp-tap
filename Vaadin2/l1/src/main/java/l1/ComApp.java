@@ -95,6 +95,8 @@ public class ComApp extends Application implements TabSheet.SelectedTabChangeLis
         tabLa.addTab(newUsr,"Create User",null);
         tabLa.addTab(newRl,"Create Roles",null);
         tabLa.addTab(ab1,"Overall Editor",null);
+        tabLa.setWidth("99%");
+	tabLa.setHeight("99%");
         overallWin.addComponent(tabLa);
         setMainWindow(overallWin);
     }
@@ -279,7 +281,7 @@ public class ComApp extends Application implements TabSheet.SelectedTabChangeLis
 	}
 	HashMap grpDtl=dataH.getGrpDetail(temp);
 	//overallWin.showNotification((String)usrDtl.get("Name"));
-	CreateForm grpForm=new CreateForm(grpDtl, 2,overallWin,this,dataH);
+	CreateForm grpForm=new CreateForm(grpDtl, 2,overallWin,this,dataH,temp);
     }
     
     public void editUsr(Label l, CheckBox cb,Button b){
@@ -291,7 +293,7 @@ public class ComApp extends Application implements TabSheet.SelectedTabChangeLis
 	}
 	HashMap usrDtl=dataH.getUsrDetail(temp);
 	//overallWin.showNotification((String)usrDtl.get("Name"));
-	CreateForm usrForm=new CreateForm(usrDtl, 1,overallWin,this,dataH);
+	CreateForm usrForm=new CreateForm(usrDtl, 1,overallWin,this,dataH,temp);
 	// Apply those to a form and Display.
 	//When Change is pressed sav data.
     }
@@ -304,7 +306,7 @@ public class ComApp extends Application implements TabSheet.SelectedTabChangeLis
 	}
 	HashMap rlDtl=dataH.getRlDetail(temp);
 	//overallWin.showNotification((String)usrDtl.get("Name"));
-	CreateForm rlForm=new CreateForm(rlDtl, 3,overallWin,this,dataH);
+	CreateForm rlForm=new CreateForm(rlDtl, 3,overallWin,this,dataH,temp);
     }
     
     public void repaintUsr(List<Label> usrL) {
@@ -427,9 +429,11 @@ public class ComApp extends Application implements TabSheet.SelectedTabChangeLis
         grpPanel.addComponent(grpV);
         usrPanel.addComponent(usrV);
         rlPanel.addComponent(rlV);
-
         ab1.setHeight("700px");
         ab1.setWidth("1000px");
+        ab1.setMargin(true); 
+	// ab1.setHeight("700px");
+	// ab1.setWidth("1000px");
 
         ab1.addComponent(grpDelB, "bottom:100px;left:145px");
         ab1.addComponent(usrAddB, "top:100px;right:410px");
@@ -469,7 +473,7 @@ public class ComApp extends Application implements TabSheet.SelectedTabChangeLis
 	for(Label l:tempusrHoldL){
 	    dataH.deleteUsrDB((String)l.getValue());
         }
-	tempusrHoldL.removeAll(tempusrHoldL);
+	//tempusrHoldL.removeAll(tempusrHoldL);
     }
     
     private void rmvRlGrp() {
@@ -488,7 +492,7 @@ public class ComApp extends Application implements TabSheet.SelectedTabChangeLis
 	    tempgrpHoldL.setValue(temp2);
 	}
         dataH.removeRlfrmGrp(temprlHoldL,(String)tempgrpHoldL.getValue());
-	temprlHoldL.removeAll(temprlHoldL);
+	//temprlHoldL.removeAll(temprlHoldL);
     }
 
     private void rlDel() {
@@ -503,7 +507,7 @@ public class ComApp extends Application implements TabSheet.SelectedTabChangeLis
 	for(Label l:temprlHoldL){
 	    dataH.deleteRlDB((String)l.getValue());
         }
-	temprlHoldL.removeAll(temprlHoldL);
+	//temprlHoldL.removeAll(temprlHoldL);
     }
     
     private void addRlGrp() {
@@ -522,7 +526,7 @@ public class ComApp extends Application implements TabSheet.SelectedTabChangeLis
 	    tempgrpHoldL.setValue(temp2);
 	}
         dataH.AddRltGrp(temprlHoldL,(String)tempgrpHoldL.getValue());
-	temprlHoldL.removeAll(temprlHoldL);
+	//temprlHoldL.removeAll(temprlHoldL);
     }
     
     private void rmvUsrGrp() {
@@ -541,7 +545,7 @@ public class ComApp extends Application implements TabSheet.SelectedTabChangeLis
 	      tempgrpHoldL.setValue(temp2);
 	  }
 	  dataH.removeUsrfrmGrp(tempusrHoldL,(String)tempgrpHoldL.getValue());
-	  tempusrHoldL.removeAll(tempusrHoldL);
+	  // tempusrHoldL.removeAll(tempusrHoldL);
     }
     
     private void addUsrGrp() {
@@ -559,9 +563,9 @@ public class ComApp extends Application implements TabSheet.SelectedTabChangeLis
 	    temp2 = temp2.substring(3, (temp2.length() - 4));
 	    tempgrpHoldL.setValue(temp2);
 	}
-	overallWin.showNotification("okGrp1222"+(String)tempgrpHoldL.getValue());
+	
         dataH.AddUsrtGrp(tempusrHoldL,(String)tempgrpHoldL.getValue());
-	tempusrHoldL.removeAll(tempusrHoldL);
+	//tempusrHoldL.removeAll(tempusrHoldL);
     }
     
     public void selectedTabChange(SelectedTabChangeEvent event) {
@@ -572,18 +576,18 @@ public class ComApp extends Application implements TabSheet.SelectedTabChangeLis
 	if(cap.equals("Create Groups")){
 	    newGrp.setRlList(dataH.getRlList());
 	    newGrp.setUsrList(dataH.getUsrList());
-	    overallWin.showNotification("grp");
+	   
 	}else if(cap.equals("Create User")){
 	    newUsr.setGrpList(dataH.getGrpList());
-            overallWin.showNotification("usr");  
+           
 	}else if(cap.equals("Create Roles")){
             newRl.setGrpList(dataH.getGrpList());
-	    overallWin.showNotification("rl");
+	   
 	} else if(cap.equals("Overall Editor")){
 	    comapp1.grpListBuild();
 	    comapp1.usrListBuild();
 	    comapp1.rlListBuild();
-	    overallWin.showNotification("ovallEditor");
+	   
 	}
     } 
 

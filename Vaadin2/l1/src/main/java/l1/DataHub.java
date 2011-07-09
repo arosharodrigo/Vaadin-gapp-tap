@@ -149,7 +149,15 @@ public List<Label> getRlGrp(String grpname1) {
     public void setUsrDetail(HashMap<String, String> d, String usr, String prev, int type) {//1=edit;
 
         //save in data base.
-
+         
+	if(usr.equals(prev)){
+	    usrD.remove(prev);
+             usrD.put(usr, d);
+       
+	 
+      db.createUser(usr,usrD.get(usr),usrGrps.get(usr));
+	}
+	else{
         usrD.put(usr, d);
         usrD.remove(prev);
         List li = (List) usrGrps.get(prev);
@@ -158,14 +166,15 @@ public List<Label> getRlGrp(String grpname1) {
         for (Label l : allUsrs) {
             if (prev.equals((String) l.getValue())) {
                 l.setContentMode(Label.CONTENT_TEXT);
-                l.setValue(usr);
+		 l.setValue(usr);
 
             }
 
         }
-
          db.createUser(usr,usrD.get(usr),usrGrps.get(usr));
          db.removeUser(prev);
+        }
+        
          updateAllGrps();
 
 
@@ -216,7 +225,7 @@ public List<Label> getRlGrp(String grpname1) {
         updateAllUsrs();
     }
     public void AddUsrtGrp(List<Label> li,String grpname2){
-       w.showNotification("okGrp1");
+     
        List<String> temp1=grpUsrs.get(grpname2);
        int x=0;
        
@@ -269,7 +278,11 @@ public List<Label> getRlGrp(String grpname1) {
     public void setGrpDetail(HashMap<String, String> d, String grp, String prev, int type) {//1=edit,2=delete,3=new;
 
         //save in data base.
-
+        if(grp.equals(prev)){
+          grpD.remove(prev);
+          grpD.put(grp, d);
+          db.createGroup(grp,grpD.get(grp),grpUsrs.get(grp),grpRls.get(grp));
+	} else{
         grpD.put(grp, d);
         grpD.remove(prev);
         List li = (List) grpUsrs.get(prev);
@@ -289,6 +302,7 @@ public List<Label> getRlGrp(String grpname1) {
         }
          db.createGroup(grp,grpD.get(grp),grpUsrs.get(grp),grpRls.get(grp));
          db.removeGroup(prev);
+	}
          updateAllUsrs();
          updateAllRls();
 
@@ -317,12 +331,12 @@ public List<Label> getRlGrp(String grpname1) {
          updateAllUsrs();
 	 updateAllRls();
         comapp1.grpListBuild();
-w.showNotification("comapp...");
+
 }
 
     public void newGrp(HashMap<String, String> d, String grp, List usrs1, List rls1) {
           db.createGroup(grp,d,usrs1,rls1);
-          w.showNotification(d.get("Detail"));  
+          
           updateAllGrps();
           updateAllUsrs();
           updateAllRls();
@@ -331,7 +345,11 @@ w.showNotification("comapp...");
     public void setRlDetail(HashMap<String, String> d, String rl, String prev, int type) {//1=edit,2=delete,3=new;
 
         //save in data base.
-
+        if(rl.equals(prev)){
+	 rlD.remove(prev);
+         rlD.put(rl, d);
+         db.createRole(rl,rlD.get(rl),rlGrps.get(rl));
+        }else{
         rlD.put(rl, d);
         rlD.remove(prev);
         List li = (List) rlGrps.get(prev);
@@ -347,6 +365,7 @@ w.showNotification("comapp...");
         }
         db.createRole(rl,rlD.get(rl),rlGrps.get(rl));
         db.removeRole(prev);
+        }
         updateAllGrps();
 
         comapp1.rlListBuild();
@@ -397,7 +416,7 @@ w.showNotification("comapp...");
     public void AddRltGrp(List<Label> li,String grpname2){
        List<String> temp1=grpRls.get(grpname2);
         int x=0;        
-      w.showNotification(temp1.size()+"");
+     
      boolean f1=false;
       for(Label lb1:li){       
           for(x=0;x<temp1.size();x++){
@@ -502,31 +521,5 @@ w.showNotification("comapp...");
 
     }
 
-   /* private void createTempUsrData(String get) {
-        HashMap<String, String> m = new HashMap<String, String>();
-        m.put("Name", get);
-        m.put("Address", "helloww");
-        m.put("Email", "xyz@gmail.com");
-        m.put("Detail", "heeelll11");
-        usrD.put(get, m);
-        allUsrs.add(new Label(get));
-        
-
-    }
-
-    private void createTempGrpData(String get) {
-        HashMap<String, String> m = new HashMap<String, String>();
-        m.put("Name", get);
-        m.put("Detail", "helloww");
-        grpD.put(get, m);
-        allGrps.add(new Label(get));
-    }
-
-    private void createTempRlData(String get) {
-        HashMap<String, String> m = new HashMap<String, String>();
-        m.put("Name", get);
-        m.put("Detail", "gaggagagg");
-        rlD.put(get, m);
-        allRls.add(new Label(get));
-    } */
+  
 }

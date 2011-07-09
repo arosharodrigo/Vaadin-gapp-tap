@@ -167,7 +167,7 @@
                 <artifactId>maven-gae-plugin</artifactId>
                 <version>0.5.6</version>
                 <configuration>
-                    <port>8090</port>
+                    <port>8080</port>
                 </configuration>
             </plugin>
         </plugins>

@@ -50,10 +50,9 @@ public class NewRole extends AbsoluteLayout implements Serializable{
                 Set hs1 = (Set) grps.getValue();
                 Iterator it1 = (Iterator) hs1.iterator();
                 while (it1.hasNext()) {
-                    w.showNotification("h111");
+                   
                     rlGrps.add((String) it1.next());
-                    // w.showNotification((String)rlGrps.get(1));
-                }
+                                   }
 
             }
         });
@@ -61,6 +60,7 @@ public class NewRole extends AbsoluteLayout implements Serializable{
         name = new TextField("Role Name");
         detail = new TextField("Role Detail");
         detail.setWidth("350px");
+        detail.setRows(7);
         reset = new Button("Reset");
         reset.addListener(new Button.ClickListener() {
 
@@ -73,14 +73,16 @@ public class NewRole extends AbsoluteLayout implements Serializable{
         create.addListener(new Button.ClickListener() {
 
             public void buttonClick(Button.ClickEvent event) {
+		try{
                 rlD.put("Name", (String) name.getValue());
                 rlD.put("Detail", (String) detail.getValue());
                 (dhub).newRl(rlD, (String) name.getValue(),rlGrps);
-               // w.showNotification((String) rlGrps.get(2));
+		}catch(Exception e){
+		}
             }
         });
         v1 = new VerticalLayout();
-        v1.setHeight("650px");
+	// v1.setHeight("650px");
         v1.setWidth("400px");
         v1.setSpacing(true);
         hl = new HorizontalLayout();
@@ -99,10 +101,8 @@ public class NewRole extends AbsoluteLayout implements Serializable{
         listSel.setNullSelectionAllowed(true);
         listSel.setMultiSelect(true);
         listSel.setImmediate(true);
-
-        //listSel.addItem("a1");
-        //listSel.addItem("a2");
-        //listSel.addItem("a3");
+        
+       
         ab1.addComponent(v1, "top:50px; left:80px");
         ab1.addComponent(listSel, "top:50px;right:100px");
       

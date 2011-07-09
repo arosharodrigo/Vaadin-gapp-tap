@@ -42,8 +42,9 @@ public class NewUser extends AbsoluteLayout implements Property.ValueChangeListe
       name=new TextField("User Name");
       add=new TextField("User Address");
       email=new TextField("User Email");
-      detail=new TextField("User Detail");
+      detail=new TextField("User Land and Mobile Phone No...");
       detail.setWidth("350px");
+      detail.setRows(7);
       reset=new Button("Reset");
       reset.addListener(new Button.ClickListener() {
 
@@ -58,17 +59,19 @@ public class NewUser extends AbsoluteLayout implements Property.ValueChangeListe
       create.addListener(new Button.ClickListener() {
 
             public void buttonClick(ClickEvent event) {
-            usrD.put("Name",(String)name.getValue());
+		try{
+	    usrD.put("Name",(String)name.getValue());
             usrD.put("Address",(String)add.getValue());
             usrD.put("Email",(String)email.getValue());
             usrD.put("Detail",(String)detail.getValue());
             (dhub).newUsr(usrD,(String)name.getValue(), usrGrps);
-            //w.showNotification((String)usrGrps.get(2));
+		} catch(Exception e){
+		}
             }
 
         });
       v1=new VerticalLayout();
-      v1.setHeight("650px");
+      // v1.setHeight("650px");
       v1.setWidth("400px");
       v1.setSpacing(true);
       hl=new HorizontalLayout();
@@ -89,9 +92,6 @@ public class NewUser extends AbsoluteLayout implements Property.ValueChangeListe
       listSel.setNullSelectionAllowed(true);
       listSel.setMultiSelect(true);
       listSel.setImmediate(true);
-     // listSel.addItem("a1");
-     // listSel.addItem("a2");
-     // listSel.addItem("a3");
       ab1.addComponent(v1,"top:50px; left:80px");
       ab1.addComponent(listSel,"top:50px;right:100px");
 
@@ -103,10 +103,8 @@ public class NewUser extends AbsoluteLayout implements Property.ValueChangeListe
        Set hs1=(Set)grps.getValue();
         Iterator it1=(Iterator)hs1.iterator();
         while(it1.hasNext()){
-             w.showNotification("h111");
-            usrGrps.add((String)it1.next());
-            // w.showNotification((String)usrGrps.get(1));
-        }
+              usrGrps.add((String)it1.next());
+             }
        
 
 

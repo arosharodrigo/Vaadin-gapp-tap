@@ -75,6 +75,7 @@ public class NewGroup extends AbsoluteLayout implements Serializable{
         name = new TextField("Group Name");
         detail = new TextField("Group Detail");
         detail.setWidth("350px");
+        detail.setRows(7);
         reset = new Button("Reset");
         reset.addListener(new Button.ClickListener() {
 
@@ -88,16 +89,17 @@ public class NewGroup extends AbsoluteLayout implements Serializable{
 
             public void buttonClick(Button.ClickEvent event) {
                 
-                
+                try{
                 grpD.put("Name", (String) name.getValue());
                 
                 grpD.put("Detail", (String) detail.getValue());//////////////
                 (dhub).newGrp(grpD, (String) name.getValue(),grpUsrs ,grpRls);
-               
+		}catch(Exception e){
+		} 
             }
         });
         v1 = new VerticalLayout();
-        v1.setHeight("650px");
+	// v1.setHeight("650px");
         v1.setWidth("400px");
         v1.setSpacing(true);
         hl = new HorizontalLayout();
@@ -110,24 +112,19 @@ public class NewGroup extends AbsoluteLayout implements Serializable{
         hl.addComponent(create);
         hl.addComponent(reset);
         v1.addComponent(hl);
-        listSel.setWidth("250px");
-        listSel.setHeight("300px");
+        listSel.setWidth("200px");
+        listSel.setHeight("250px");
         listSel.setRows(7);
         listSel.setNullSelectionAllowed(true);
         listSel.setMultiSelect(true);
         listSel.setImmediate(true);
-       // listSel.addItem("a1");
-        //listSel.addItem("a2");
-       // listSel.addItem("a3");
-        listSel2.setWidth("250px");
-        listSel2.setHeight("300px");
+        listSel2.setWidth("200px");
+        listSel2.setHeight("250px");
         listSel2.setRows(7);
         listSel2.setNullSelectionAllowed(true);
         listSel2.setMultiSelect(true);
         listSel2.setImmediate(true);
-        //listSel2.addItem("b1");
-       // listSel2.addItem("b2");
-       // listSel2.addItem("b3");
+       
         ab1.addComponent(v1, "top:50px; left:80px");
         ab1.addComponent(listSel, "top:50px;right:100px");
          ab1.addComponent(listSel2, "bottom:70px;right:100px");
